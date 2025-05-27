@@ -12,5 +12,17 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
+    requireEmailVerification: true,
+    minPasswordLength: 8,
   },
+  session: {
+    expiresIn: 60 * 60 * 24 * 7,   // 7 days
+    updateAge: 60 * 60 * 24,        // 1 day
+  },
+  rateLimit: {
+    window: 15 * 60 * 1000,         // 15 minutes
+    max: 100,                       // max requests per window per IP
+  },
+  secret: process.env.BETTER_AUTH_SECRET,
+  trustedOrigins: [process.env.NEXT_PUBLIC_APP_URL],
 });
