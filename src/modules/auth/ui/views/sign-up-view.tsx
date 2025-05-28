@@ -21,6 +21,7 @@ import type { Dictionary } from "@/types/dictionary";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, OctagonAlertIcon } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -29,6 +30,7 @@ export const SignUpView = ({ dictionary }: { dictionary: Dictionary }) => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { getLocalizedHref } = useLocalizedHref();
+  const router = useRouter();
 
   // Create form schema with dictionary values for validation messages
   const formSchema = z
@@ -73,6 +75,8 @@ export const SignUpView = ({ dictionary }: { dictionary: Dictionary }) => {
     if (error) {
       setError(error.message ?? dictionary.auth.signUp.defaultError);
       setIsLoading(false);
+    } else {
+      router.push(getLocalizedHref("/"));
     }
   };
 
