@@ -14,7 +14,9 @@ import {
 import GithubIcon from "@/components/ui/github-icon";
 import GoogleIcon from "@/components/ui/google-icon";
 import { Input } from "@/components/ui/input";
+import Logo from "@/components/ui/logo";
 import { authClient } from "@/lib/auth-client";
+import type { Dictionary } from "@/types/dictionary";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, OctagonAlertIcon } from "lucide-react";
 import Link from "next/link";
@@ -23,15 +25,18 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-const formSchema = z.object({
-  email: z.string().email({ message: "Invalid email address" }),
-  password: z.string().min(1, { message: "Password is required" }),
-});
-
-export const SignInView = () => {
+export const SignInView = ({ dictionary }: { dictionary: Dictionary }) => {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Create form schema with dictionary values for validation messages
+  const formSchema = z.object({
+    email: z.string().email({ message: dictionary.auth.signIn.emailRequired }),
+    password: z
+      .string()
+      .min(1, { message: dictionary.auth.signIn.passwordRequired }),
+  });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -51,7 +56,7 @@ export const SignInView = () => {
     });
 
     if (error) {
-      setError(error.message ?? "An error occurred");
+      setError(error.message ?? dictionary.auth.signIn.defaultError);
       setIsLoading(false);
     } else {
       router.push("/");
@@ -66,8 +71,12 @@ export const SignInView = () => {
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-6 p-6 md:p-8">
                 <div className="text-center">
-                  <h1 className="text-2xl font-semibold">Welcome back</h1>
-                  <p className="text-sm">Login to your account</p>
+                  <h1 className="text-2xl font-semibold">
+                    {dictionary.auth.signIn.title}
+                  </h1>
+                  <p className="text-sm">
+                    {dictionary.auth.signIn.description}
+                  </p>
                 </div>
 
                 <FormField
@@ -75,12 +84,12 @@ export const SignInView = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>{dictionary.auth.signIn.email}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           type="email"
-                          placeholder="Enter your email"
+                          placeholder={dictionary.auth.signIn.emailPlaceholder}
                         />
                       </FormControl>
                       <FormMessage />
@@ -93,12 +102,14 @@ export const SignInView = () => {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Password</FormLabel>
+                      <FormLabel>{dictionary.auth.signIn.password}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           type="password"
-                          placeholder="Enter your password"
+                          placeholder={
+                            dictionary.auth.signIn.passwordPlaceholder
+                          }
                         />
                       </FormControl>
                       <FormMessage />
@@ -109,20 +120,20 @@ export const SignInView = () => {
                 {!!error && (
                   <Alert className="bg-destructive/10 border-none">
                     <OctagonAlertIcon className="h-4 w-4 !text-destructive" />
-                    <AlertTitle>Error</AlertTitle>
+                    <AlertTitle>{dictionary.auth.signIn.errorTitle}</AlertTitle>
                     <AlertDescription>{error}</AlertDescription>
                   </Alert>
                 )}
 
                 <Button type="submit" className="w-full" disabled={isLoading}>
-                  Sign In
+                  {dictionary.auth.signIn.signIn}
                   {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
                 </Button>
 
                 <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
                   <hr className="border-t" />
                   <span className="text-muted-foreground text-xs">
-                    Or continue with
+                    {dictionary.auth.signIn.orContinueWith}
                   </span>
                   <hr className="border-t" />
                 </div>
@@ -130,36 +141,41 @@ export const SignInView = () => {
                 <div className="grid grid-cols-2 gap-3">
                   <Button type="button" variant="outline" disabled={isLoading}>
                     <GoogleIcon />
-                    <span>Google</span>
+                    <span>{dictionary.auth.signIn.google}</span>
                   </Button>
                   <Button type="button" variant="outline" disabled={isLoading}>
                     <GithubIcon />
-                    <span>GitHub</span>
+                    <span>{dictionary.auth.signIn.github}</span>
                   </Button>
                 </div>
               </div>
 
               <div className="p-3">
                 <p className="text-accent-foreground text-center text-sm">
-                  Don&apos;t have an account ?
+                  {dictionary.auth.signIn.noAccount}
                   <Button asChild variant="link" className="px-2">
-                    <Link href="/auth/sign-up">Create account</Link>
+                    <Link href="/auth/sign-up">
+                      {dictionary.auth.signIn.createAccount}
+                    </Link>
                   </Button>
                 </p>
               </div>
             </form>
           </Form>
           <div className="bg-linear-to-b from-primary to-primary/80 relative hidden md:flex flex-col gap-y-4 justify-center items-center">
-            <img src="/logo.svg" alt="Meet.AI" className="w-[92px] h-[92px]" />
-            <p className="text-white text-2xl font-bold">Meet.AI</p>
+            <Logo className="w-[92px] h-[92px]" />
+            <p className="text-white text-2xl font-bold">
+              {dictionary.auth.signIn.appName}
+            </p>
           </div>
         </CardContent>
       </Card>
 
       <div className="text-center text-sm text-muted-foreground text-balance *:[a]:hover:text-primary *:[a]:underline *:[a]:underline-offset-4">
-        By clicking continue, you agree to our{" "}
-        <Link href="/terms">Terms of Service</Link> and{" "}
-        <Link href="/privacy">Privacy Policy</Link>
+        {dictionary.auth.signIn.termsText}{" "}
+        <Link href="/terms">{dictionary.auth.signIn.termsOfService}</Link>{" "}
+        {dictionary.auth.signIn.and}{" "}
+        <Link href="/privacy">{dictionary.auth.signIn.privacyPolicy}</Link>
       </div>
     </div>
   );

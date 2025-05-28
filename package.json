@@ -8,9 +8,11 @@
     "start": "next start",
     "lint": "next lint",
     "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "translate": "npx -y languine@latest translate"
   },
   "dependencies": {
+    "@formatjs/intl-localematcher": "^0.6.1",
     "@hookform/resolvers": "^5.0.1",
     "@neondatabase/serverless": "^1.0.0",
     "@radix-ui/react-accordion": "^1.2.11",
@@ -49,6 +51,7 @@
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.511.0",
+    "negotiator": "^1.0.0",
     "next": "15.3.2",
     "next-themes": "^0.4.6",
     "react": "^19.0.0",
@@ -65,6 +68,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/negotiator": "^0.6.3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
