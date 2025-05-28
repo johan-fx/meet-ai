@@ -79,6 +79,18 @@ export const SignUpView = ({ dictionary }: { dictionary: Dictionary }) => {
     }
   };
 
+  const onSocial = async (provider: "google" | "github") => {
+    setError(null);
+    setIsLoading(true);
+
+    const { error } = await authClient.signIn.social({ provider });
+
+    if (error) {
+      setError(error.message ?? dictionary.auth.signIn.defaultError);
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-6">
       <Card className="overflow-hidden p-0">
@@ -195,11 +207,21 @@ export const SignUpView = ({ dictionary }: { dictionary: Dictionary }) => {
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
-                  <Button type="button" variant="outline" disabled={isLoading}>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={isLoading}
+                    onClick={() => onSocial("google")}
+                  >
                     <GoogleIcon />
                     <span>{dictionary.auth.signUp.google}</span>
                   </Button>
-                  <Button type="button" variant="outline" disabled={isLoading}>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={isLoading}
+                    onClick={() => onSocial("github")}
+                  >
                     <GithubIcon />
                     <span>{dictionary.auth.signUp.github}</span>
                   </Button>

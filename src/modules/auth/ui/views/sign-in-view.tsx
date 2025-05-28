@@ -65,6 +65,18 @@ export const SignInView = ({ dictionary }: { dictionary: Dictionary }) => {
     }
   };
 
+  const onSocial = async (provider: "google" | "github") => {
+    setError(null);
+    setIsLoading(true);
+
+    const { error } = await authClient.signIn.social({ provider });
+
+    if (error) {
+      setError(error.message ?? dictionary.auth.signIn.defaultError);
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-6">
       <Card className="overflow-hidden p-0">
@@ -141,11 +153,21 @@ export const SignInView = ({ dictionary }: { dictionary: Dictionary }) => {
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
-                  <Button type="button" variant="outline" disabled={isLoading}>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={isLoading}
+                    onClick={() => onSocial("google")}
+                  >
                     <GoogleIcon />
                     <span>{dictionary.auth.signIn.google}</span>
                   </Button>
-                  <Button type="button" variant="outline" disabled={isLoading}>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={isLoading}
+                    onClick={() => onSocial("github")}
+                  >
                     <GithubIcon />
                     <span>{dictionary.auth.signIn.github}</span>
                   </Button>
@@ -173,7 +195,7 @@ export const SignInView = ({ dictionary }: { dictionary: Dictionary }) => {
         </CardContent>
       </Card>
 
-      <div className="text-center text-sm text-muted-foreground text-balance *:[a]:hover:text-primary *:[a]:underline *:[a]:underline-offset-4">
+      <div className="text-center text-sm text-muted-foreground text-balance space-x-1 *:[a]:hover:text-primary *:[a]:underline *:[a]:underline-offset-4">
         <span>{dictionary.auth.signIn.termsText}</span>
         <Link href={getLocalizedHref("/terms")}>
           {dictionary.auth.signIn.termsOfService}
