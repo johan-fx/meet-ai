@@ -15,6 +15,7 @@ import GithubIcon from "@/components/ui/github-icon";
 import GoogleIcon from "@/components/ui/google-icon";
 import { Input } from "@/components/ui/input";
 import Logo from "@/components/ui/logo";
+import { useLocalizedHref } from "@/hooks/use-localized-href";
 import { authClient } from "@/lib/auth-client";
 import type { Dictionary } from "@/types/dictionary";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,6 +30,7 @@ export const SignUpView = ({ dictionary }: { dictionary: Dictionary }) => {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { getLocalizedHref } = useLocalizedHref();
 
   // Create form schema with dictionary values for validation messages
   const formSchema = z
@@ -73,7 +75,7 @@ export const SignUpView = ({ dictionary }: { dictionary: Dictionary }) => {
       setError(error.message ?? dictionary.auth.signUp.defaultError);
       setIsLoading(false);
     } else {
-      router.push("/");
+      router.push(getLocalizedHref("/"));
     }
   };
 
@@ -208,7 +210,7 @@ export const SignUpView = ({ dictionary }: { dictionary: Dictionary }) => {
                 <p className="text-accent-foreground text-center text-sm">
                   {dictionary.auth.signUp.alreadyHaveAccount}
                   <Button asChild variant="link" className="px-2">
-                    <Link href="/auth/sign-in">
+                    <Link href={getLocalizedHref("/auth/sign-in")}>
                       {dictionary.auth.signUp.signIn}
                     </Link>
                   </Button>
@@ -225,11 +227,15 @@ export const SignUpView = ({ dictionary }: { dictionary: Dictionary }) => {
         </CardContent>
       </Card>
 
-      <div className="text-center text-sm text-muted-foreground text-balance *:[a]:hover:text-primary *:[a]:underline *:[a]:underline-offset-4">
-        {dictionary.auth.signUp.termsText}{" "}
-        <Link href="/terms">{dictionary.auth.signUp.termsOfService}</Link>{" "}
-        {dictionary.auth.signUp.and}{" "}
-        <Link href="/privacy">{dictionary.auth.signUp.privacyPolicy}</Link>
+      <div className="text-center space-x-1 text-sm text-muted-foreground text-balance *:[a]:hover:text-primary *:[a]:underline *:[a]:underline-offset-4">
+        <span>{dictionary.auth.signUp.termsText}</span>
+        <Link href={getLocalizedHref("/terms")}>
+          {dictionary.auth.signUp.termsOfService}
+        </Link>
+        <span>{dictionary.auth.signUp.and}</span>
+        <Link href={getLocalizedHref("/privacy")}>
+          {dictionary.auth.signUp.privacyPolicy}
+        </Link>
       </div>
     </div>
   );

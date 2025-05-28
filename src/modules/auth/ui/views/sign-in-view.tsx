@@ -15,6 +15,7 @@ import GithubIcon from "@/components/ui/github-icon";
 import GoogleIcon from "@/components/ui/google-icon";
 import { Input } from "@/components/ui/input";
 import Logo from "@/components/ui/logo";
+import { useLocalizedHref } from "@/hooks/use-localized-href";
 import { authClient } from "@/lib/auth-client";
 import type { Dictionary } from "@/types/dictionary";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,6 +30,7 @@ export const SignInView = ({ dictionary }: { dictionary: Dictionary }) => {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { getLocalizedHref } = useLocalizedHref();
 
   // Create form schema with dictionary values for validation messages
   const formSchema = z.object({
@@ -59,7 +61,7 @@ export const SignInView = ({ dictionary }: { dictionary: Dictionary }) => {
       setError(error.message ?? dictionary.auth.signIn.defaultError);
       setIsLoading(false);
     } else {
-      router.push("/");
+      router.push(getLocalizedHref("/"));
     }
   };
 
@@ -154,7 +156,7 @@ export const SignInView = ({ dictionary }: { dictionary: Dictionary }) => {
                 <p className="text-accent-foreground text-center text-sm">
                   {dictionary.auth.signIn.noAccount}
                   <Button asChild variant="link" className="px-2">
-                    <Link href="/auth/sign-up">
+                    <Link href={getLocalizedHref("/auth/sign-up")}>
                       {dictionary.auth.signIn.createAccount}
                     </Link>
                   </Button>
@@ -172,10 +174,14 @@ export const SignInView = ({ dictionary }: { dictionary: Dictionary }) => {
       </Card>
 
       <div className="text-center text-sm text-muted-foreground text-balance *:[a]:hover:text-primary *:[a]:underline *:[a]:underline-offset-4">
-        {dictionary.auth.signIn.termsText}{" "}
-        <Link href="/terms">{dictionary.auth.signIn.termsOfService}</Link>{" "}
-        {dictionary.auth.signIn.and}{" "}
-        <Link href="/privacy">{dictionary.auth.signIn.privacyPolicy}</Link>
+        <span>{dictionary.auth.signIn.termsText}</span>
+        <Link href={getLocalizedHref("/terms")}>
+          {dictionary.auth.signIn.termsOfService}
+        </Link>
+        <span>{dictionary.auth.signIn.and}</span>
+        <Link href={getLocalizedHref("/privacy")}>
+          {dictionary.auth.signIn.privacyPolicy}
+        </Link>
       </div>
     </div>
   );
