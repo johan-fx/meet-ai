@@ -1,7 +1,8 @@
-import { betterAuth } from "better-auth";
-import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "@/db";
 import * as schema from "@/db/schema";
+import { betterAuth } from "better-auth";
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { requireEnv } from "./env";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -13,6 +14,17 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     minPasswordLength: 8,
+  },
+  socialProviders: {
+    github: {
+      clientId: requireEnv("GITHUB_CLIENT_ID"),
+      clientSecret: requireEnv("GITHUB_CLIENT_SECRET"),
+    },
+    google: {
+      prompt: "select_account",
+      clientId: requireEnv("GOOGLE_CLIENT_ID"),
+      clientSecret: requireEnv("GOOGLE_CLIENT_SECRET"),
+    },
   },
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days

@@ -21,13 +21,11 @@ import type { Dictionary } from "@/types/dictionary";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, OctagonAlertIcon } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 export const SignUpView = ({ dictionary }: { dictionary: Dictionary }) => {
-  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { getLocalizedHref } = useLocalizedHref();
@@ -69,13 +67,27 @@ export const SignUpView = ({ dictionary }: { dictionary: Dictionary }) => {
       name: data.name,
       email: data.email,
       password: data.password,
+      callbackURL: getLocalizedHref("/"),
     });
 
     if (error) {
       setError(error.message ?? dictionary.auth.signUp.defaultError);
       setIsLoading(false);
-    } else {
-      router.push(getLocalizedHref("/"));
+    }
+  };
+
+  const onSocial = async (provider: "google" | "github") => {
+    setError(null);
+    setIsLoading(true);
+
+    const { error } = await authClient.signIn.social({
+      provider,
+      callbackURL: getLocalizedHref("/"),
+    });
+
+    if (error) {
+      setError(error.message ?? dictionary.auth.signIn.defaultError);
+      setIsLoading(false);
     }
   };
 
@@ -195,11 +207,21 @@ export const SignUpView = ({ dictionary }: { dictionary: Dictionary }) => {
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
-                  <Button type="button" variant="outline" disabled={isLoading}>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={isLoading}
+                    onClick={() => onSocial("google")}
+                  >
                     <GoogleIcon />
                     <span>{dictionary.auth.signUp.google}</span>
                   </Button>
-                  <Button type="button" variant="outline" disabled={isLoading}>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={isLoading}
+                    onClick={() => onSocial("github")}
+                  >
                     <GithubIcon />
                     <span>{dictionary.auth.signUp.github}</span>
                   </Button>
