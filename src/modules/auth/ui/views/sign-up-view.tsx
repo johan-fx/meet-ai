@@ -21,13 +21,11 @@ import type { Dictionary } from "@/types/dictionary";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, OctagonAlertIcon } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 export const SignUpView = ({ dictionary }: { dictionary: Dictionary }) => {
-  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { getLocalizedHref } = useLocalizedHref();
@@ -69,13 +67,12 @@ export const SignUpView = ({ dictionary }: { dictionary: Dictionary }) => {
       name: data.name,
       email: data.email,
       password: data.password,
+      callbackURL: getLocalizedHref("/"),
     });
 
     if (error) {
       setError(error.message ?? dictionary.auth.signUp.defaultError);
       setIsLoading(false);
-    } else {
-      router.push(getLocalizedHref("/"));
     }
   };
 
@@ -83,7 +80,10 @@ export const SignUpView = ({ dictionary }: { dictionary: Dictionary }) => {
     setError(null);
     setIsLoading(true);
 
-    const { error } = await authClient.signIn.social({ provider });
+    const { error } = await authClient.signIn.social({
+      provider,
+      callbackURL: getLocalizedHref("/"),
+    });
 
     if (error) {
       setError(error.message ?? dictionary.auth.signIn.defaultError);
