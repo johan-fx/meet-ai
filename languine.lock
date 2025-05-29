@@ -52,3 +52,12 @@ files:
     auth.signIn.privacyPolicy: fa2ead697d9998cbc65c81384e6533d5
     auth.signIn.logoAlt: 8c2e28f1f1ff07ec3f99fff039b68019
     auth.signIn.appName: 8c2e28f1f1ff07ec3f99fff039b68019
+    dashboard.navUser.avatarFallback: 0a40e3c91a3a55c9a37428c6d194d0e5
+    dashboard.navUser.upgradeToPro: e2098b4d8b81851e9011176668214642
+    dashboard.navUser.account: 08bd40c7543007ad06e4fce31618f6ec
+    dashboard.navUser.billing: 780c462e85ba4399a5d42e88f69a15ca
+    dashboard.navUser.notifications: a274f4d4670213a9045ce258c6c56b80
+    dashboard.navUser.logOut: 4394c8d8e63c470de62ced3ae85de5ae
+    dashboard.navMain.title: 419f3742e6de8e0ec4b22cce005e7630
+    dashboard.navMain.meetings: 2fd5c01f4902b65ff3d8dd3d60565520
+    dashboard.navMain.agents: 375099f0c804e924c1dc275370710d92
