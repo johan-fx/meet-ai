@@ -64,6 +64,11 @@
       "billing": "Facturación",
       "notifications": "Notificaciones",
       "logOut": "Cerrar sesión"
+    },
+    "navMain": {
+      "title": "Plataforma",
+      "meetings": "Reuniones",
+      "agents": "Agentes"
     }
   }
 }
