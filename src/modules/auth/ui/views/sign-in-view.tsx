@@ -186,7 +186,7 @@ export const SignInView = ({ dictionary }: { dictionary: Dictionary }) => {
               </div>
             </form>
           </Form>
-          <div className="bg-linear-to-b from-primary to-primary/80 relative hidden md:flex flex-col gap-y-4 justify-center items-center">
+          <div className="bg-primary relative hidden md:flex flex-col gap-y-4 justify-center items-center">
             <Logo className="w-[92px] h-[92px]" />
             <p className="text-white text-2xl font-bold">
               {dictionary.auth.signIn.appName}

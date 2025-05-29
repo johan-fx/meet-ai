@@ -55,5 +55,20 @@
       "logoAlt": "Meet.AI",
       "appName": "Meet.AI"
     }
+  },
+  "dashboard": {
+    "navUser": {
+      "avatarFallback": "AI",
+      "upgradeToPro": "Upgrade to Pro",
+      "account": "Account",
+      "billing": "Billing",
+      "notifications": "Notifications",
+      "logOut": "Log out"
+    },
+    "navMain": {
+      "title": "Platform",
+      "meetings": "Meetings",
+      "agents": "Agents"
+    }
   }
 }
