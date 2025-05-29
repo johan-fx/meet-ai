@@ -13,11 +13,12 @@ import {
 import { useLocalizedHref } from "@/hooks/use-localized-href";
 import type { Dictionary } from "@/types/dictionary";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function NavMain({ dictionary }: { dictionary: Dictionary }) {
   const locales = dictionary.dashboard.navMain;
   const { getLocalizedHref } = useLocalizedHref();
-  const pathname = "/en/meetings"; // usePathname();
+  const pathname = usePathname();
 
   const navItems = [
     {

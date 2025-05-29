@@ -58,3 +58,6 @@ files:
     dashboard.navUser.billing: 780c462e85ba4399a5d42e88f69a15ca
     dashboard.navUser.notifications: a274f4d4670213a9045ce258c6c56b80
     dashboard.navUser.logOut: 4394c8d8e63c470de62ced3ae85de5ae
+    dashboard.navMain.title: 419f3742e6de8e0ec4b22cce005e7630
+    dashboard.navMain.meetings: 2fd5c01f4902b65ff3d8dd3d60565520
+    dashboard.navMain.agents: 375099f0c804e924c1dc275370710d92

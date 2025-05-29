@@ -14,18 +14,36 @@ const GeneratedAvatar = ({
   className,
   variant,
 }: GeneratedAvatarProps) => {
+  if (!seed) {
+    return (
+      <Avatar className={cn(className)}>
+        <AvatarFallback>??</AvatarFallback>
+      </Avatar>
+    );
+  }
+
   let avatar: Result | undefined;
 
-  if (variant === "botttsNeutral") {
-    avatar = createAvatar(botttsNeutral, {
-      seed,
-    });
-  } else if (variant === "initials") {
-    avatar = createAvatar(initials, {
-      seed,
-      fontWeight: 500,
-      fontSize: 42,
-    });
+  switch (variant) {
+    case "botttsNeutral":
+      avatar = createAvatar(botttsNeutral, {
+        seed,
+      });
+      break;
+    case "initials":
+      avatar = createAvatar(initials, {
+        seed,
+        fontWeight: 500,
+        fontSize: 42,
+      });
+      break;
+    default:
+      // Default to initials variant for unknown variants
+      avatar = createAvatar(initials, {
+        seed,
+        fontWeight: 500,
+        fontSize: 42,
+      });
   }
 
   return (
