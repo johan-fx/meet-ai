@@ -1,6 +1,7 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 import type { SupportedLocale } from "@/lib/dictionary";
 import { getDictionary } from "@/lib/dictionary";
+import DashboardNavbar from "@/modules/dashboard/ui/components/dashboard-navbar";
 import { DashboardSidebar } from "@/modules/dashboard/ui/components/dashboard-sidebar";
 
 interface Props {
@@ -16,7 +17,10 @@ const Layout = async ({ children, params }: Props) => {
   return (
     <SidebarProvider>
       <DashboardSidebar dictionary={dictionary} />
-      <main className="flex flex-1">{children}</main>
+      <main className="flex flex-col h-screen w-screen bg-muted">
+        <DashboardNavbar />
+        {children}
+      </main>
     </SidebarProvider>
   );
 };

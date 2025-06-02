@@ -6,9 +6,20 @@ import {
   LogOut,
   Sparkles,
 } from "lucide-react";
+import { forwardRef } from "react";
 
 import GeneratedAvatar from "@/components/generated-avatar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,6 +29,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -41,6 +53,28 @@ const UserAvatar = ({ user }: { user: User }) => {
     <GeneratedAvatar seed={user?.name} variant="initials" className="h-8 w-8" />
   );
 };
+
+const UserMenuButton = forwardRef<HTMLButtonElement, { user: User }>(
+  ({ user, ...props }, ref) => {
+    return (
+      <SidebarMenuButton
+        {...props}
+        ref={ref}
+        size="lg"
+        className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+      >
+        <UserAvatar user={user} />
+        <div className="grid flex-1 text-left text-sm leading-tight">
+          <span className="truncate font-semibold">{user?.name}</span>
+          <span className="truncate text-xs">{user?.email}</span>
+        </div>
+        <ChevronsUpDown className="ml-auto size-4" />
+      </SidebarMenuButton>
+    );
+  }
+);
+
+UserMenuButton.displayName = "UserMenuButton";
 
 export function NavUser({ dictionary }: { dictionary: Dictionary }) {
   const { data: session, isPending } = authClient.useSession();
@@ -68,64 +102,92 @@ export function NavUser({ dictionary }: { dictionary: Dictionary }) {
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <SidebarMenuButton
-              size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+        {isMobile ? (
+          <Drawer>
+            <DrawerTrigger asChild>
+              <UserMenuButton user={user} />
+            </DrawerTrigger>
+            <DrawerContent>
+              <DrawerHeader>
+                <DrawerTitle>{user?.name}</DrawerTitle>
+                <DrawerDescription>{user?.email}</DrawerDescription>
+              </DrawerHeader>
+              <div className="flex flex-col gap-2">
+                <Separator />
+                <Button variant="ghost" className="justify-start">
+                  <Sparkles />
+                  {locales.upgradeToPro}
+                </Button>
+                <Button variant="ghost" className="justify-start">
+                  <BadgeCheck />
+                  {locales.account}
+                </Button>
+                <Button variant="ghost" className="justify-start">
+                  <CreditCard />
+                  {locales.billing}
+                </Button>
+                <Button variant="ghost" className="justify-start">
+                  <Bell />
+                  {locales.notifications}
+                </Button>
+              </div>
+              <DrawerFooter>
+                <Button variant="outline" onClick={handleSignOut}>
+                  {locales.logOut}
+                </Button>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
+        ) : (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <UserMenuButton user={user} />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+              side="right"
+              align="end"
+              sideOffset={4}
             >
-              <UserAvatar user={user} />
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{user?.name}</span>
-                <span className="truncate text-xs">{user?.email}</span>
-              </div>
-              <ChevronsUpDown className="ml-auto size-4" />
-            </SidebarMenuButton>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-            side={isMobile ? "bottom" : "right"}
-            align="end"
-            sideOffset={4}
-          >
-            <DropdownMenuLabel className="p-0 font-normal">
-              <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <UserAvatar user={user} />
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{user?.name}</span>
-                  <span className="truncate text-xs">{user?.email}</span>
+              <DropdownMenuLabel className="p-0 font-normal">
+                <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                  <UserAvatar user={user} />
+                  <div className="grid flex-1 text-left text-sm leading-tight">
+                    <span className="truncate font-semibold">{user?.name}</span>
+                    <span className="truncate text-xs">{user?.email}</span>
+                  </div>
                 </div>
-              </div>
-            </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Sparkles />
-                {locales.upgradeToPro}
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  <Sparkles />
+                  {locales.upgradeToPro}
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  <BadgeCheck />
+                  {locales.account}
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <CreditCard />
+                  {locales.billing}
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Bell />
+                  {locales.notifications}
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={handleSignOut}>
+                <LogOut />
+                {locales.logOut}
               </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                {locales.account}
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCard />
-                {locales.billing}
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell />
-                {locales.notifications}
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleSignOut}>
-              <LogOut />
-              {locales.logOut}
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
       </SidebarMenuItem>
     </SidebarMenu>
   );
