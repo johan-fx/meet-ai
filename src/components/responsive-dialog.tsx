@@ -18,7 +18,7 @@ import {
 
 interface ResponsiveDialogProps {
   open: boolean;
-  onOpenChange: () => void;
+  onOpenChange: (open: boolean) => void;
   title: string;
   description?: string;
   children: React.ReactNode;
@@ -39,7 +39,9 @@ const ResponsiveDialog = ({
         <DrawerContent>
           <DrawerHeader>
             <DrawerTitle>{title}</DrawerTitle>
-            <DrawerDescription>{description}</DrawerDescription>
+            {!!description && (
+              <DrawerDescription>{description}</DrawerDescription>
+            )}
           </DrawerHeader>
           <div className="p-4">{children}</div>
         </DrawerContent>
