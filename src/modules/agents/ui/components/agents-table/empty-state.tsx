@@ -12,7 +12,7 @@ const EmptyState = ({ dictionary }: ViewProps) => {
         <div className="flex flex-col gap-y-6 max-w-md mx-auto text-center">
           <Image
             src="/images/agents-empty-state.png"
-            alt="Empty state"
+            alt="Illustration: no agents available"
             width={240}
             height={240}
             className="mx-auto"
