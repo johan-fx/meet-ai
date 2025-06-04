@@ -61,3 +61,16 @@ files:
     dashboard.navMain.title: 419f3742e6de8e0ec4b22cce005e7630
     dashboard.navMain.meetings: 2fd5c01f4902b65ff3d8dd3d60565520
     dashboard.navMain.agents: 375099f0c804e924c1dc275370710d92
+    agents.list.title: 4341e8044c2b0598b7c026846b080781
+    agents.list.newAgent: 34b1143dd1d64c24c9d94b3e03584821
+    agents.list.newAgentDescription: 897a0d98e7fc5c6fd502c17b49a78919
+    agents.form.name: 49ee3087348e8d44e1feda1917443987
+    agents.form.namePlaceholder: 5ab206ad06114e49858664b3b98289fb
+    agents.form.instructions: 49cc8e6220245b65cd7d20fc6ccc74f5
+    agents.form.instructionsPlaceholder: b9270a9eb60420974b1b4f3adb6b9d78
+    agents.form.create: 686e697538050e4664636337cc3b834f
+    agents.form.edit: 7dce122004969d56ae2e0245cb754d35
+    agents.form.cancel: ea4788705e6873b424c65e91c2846b19
+    agents.form.save: c9cc8cce247e49bae79f15173ce97354
+    agents.form.errors.nameRequired: 649ff3413871277ec215494afbda6458
+    agents.form.errors.instructionsRequired: 75342e830c658a0db78c5a6e6f773a39
