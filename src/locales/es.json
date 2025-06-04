@@ -75,7 +75,18 @@
     "list": {
       "title": "Mis Agentes",
       "newAgent": "Nuevo Agente",
-      "newAgentDescription": "Crear un nuevo agente"
+      "newAgentDescription": "Crear un nuevo agente",
+      "headers": {
+        "name": "Nombre",
+        "instructions": "Instrucciones",
+        "meetings": "Reuniones",
+        "meeting": "Reunión"
+      },
+      "emptyState": {
+        "title": "No se encontraron agentes",
+        "description": "Crea un agente para unirte a tus reuniones. Cada agente seguirá tus instrucciones y podrá interactuar con los participantes durante la llamada.",
+        "ctaLabel": "Crea tu primer agente"
+      }
     },
     "form": {
       "name": "Nombre",

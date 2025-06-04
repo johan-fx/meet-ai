@@ -5,17 +5,19 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useTRPC } from "@/trpc/client";
 import { ViewProps } from "@/types/view";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { getColumns } from "../components/agents-table/columns";
+import { DataTable } from "../components/agents-table/data-table";
 
 export const AgentsView = ({ dictionary }: ViewProps) => {
   const trpc = useTRPC();
 
   const { data } = useSuspenseQuery(trpc.agents.getMany.queryOptions());
 
+  const columns = getColumns(dictionary);
+
   return (
-    <div>
-      {data?.map((agent) => (
-        <div key={agent.id}>{agent.name}</div>
-      ))}
+    <div className="flex flex-1 flex-col pb-4 px-4 md:px-8">
+      <DataTable columns={columns} data={data} dictionary={dictionary} />
     </div>
   );
 };

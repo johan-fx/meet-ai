@@ -64,6 +64,13 @@ files:
     agents.list.title: 4341e8044c2b0598b7c026846b080781
     agents.list.newAgent: 34b1143dd1d64c24c9d94b3e03584821
     agents.list.newAgentDescription: 897a0d98e7fc5c6fd502c17b49a78919
+    agents.list.headers.name: 49ee3087348e8d44e1feda1917443987
+    agents.list.headers.instructions: 49cc8e6220245b65cd7d20fc6ccc74f5
+    agents.list.headers.meetings: 2fd5c01f4902b65ff3d8dd3d60565520
+    agents.list.headers.meeting: a6e3488cf178a7e7e41d05cccfdc5a80
+    agents.list.emptyState.title: 23fb98eca71a508765ffe349fb7b68b6
+    agents.list.emptyState.description: b9d815dab8ec5e5e0ca8831813b26202
+    agents.list.emptyState.ctaLabel: 7ed142f1bb9b8d86973e4212bddb46d4
     agents.form.name: 49ee3087348e8d44e1feda1917443987
     agents.form.namePlaceholder: 5ab206ad06114e49858664b3b98289fb
     agents.form.instructions: 49cc8e6220245b65cd7d20fc6ccc74f5

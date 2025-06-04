@@ -75,7 +75,18 @@
     "list": {
       "title": "My Agents",
       "newAgent": "New Agent",
-      "newAgentDescription": "Create a new agent"
+      "newAgentDescription": "Create a new agent",
+      "headers": {
+        "name": "Name",
+        "instructions": "Instructions",
+        "meetings": "Meetings",
+        "meeting": "Meeting"
+      },
+      "emptyState": {
+        "title": "No agents found",
+        "description": "Create an agent to join your meetings. Each agent will follow your instructions and can interact with participants during the call.",
+        "ctaLabel": "Create your first agent"
+      }
     },
     "form": {
       "name": "Name",
