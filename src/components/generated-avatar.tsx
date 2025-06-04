@@ -54,4 +54,4 @@ const GeneratedAvatar = ({
   );
 };
 
-export default GeneratedAvatar;
+export { GeneratedAvatar };

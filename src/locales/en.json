@@ -70,5 +70,26 @@
       "meetings": "Meetings",
       "agents": "Agents"
     }
+  },
+  "agents": {
+    "list": {
+      "title": "My Agents",
+      "newAgent": "New Agent",
+      "newAgentDescription": "Create a new agent"
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Eg. Math Tutor",
+      "instructions": "Instructions",
+      "instructionsPlaceholder": "Eg. You are a math tutor. You are good at explaining math concepts.",
+      "create": "Create",
+      "edit": "Edit",
+      "cancel": "Cancel",
+      "save": "Save",
+      "errors": {
+        "nameRequired": "Agent name is required",
+        "instructionsRequired": "Agent instructions are required"
+      }
+    }
   }
 }
