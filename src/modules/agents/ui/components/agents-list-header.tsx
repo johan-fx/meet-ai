@@ -10,9 +10,11 @@ const AgentsListHeader = ({ dictionary }: ViewProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   return (
     <>
-      <div className="py-4 px-4 md:px-8 flex flex-col gap-y-4">
+      <div className="py-6 px-4 md:px-8 flex flex-col gap-y-4">
         <div className="flex items-center justify-between">
-          <h5 className="text-xl font-bold">{dictionary.agents.list.title}</h5>
+          <h5 className="text-xl font-semibold">
+            {dictionary.agents.list.title}
+          </h5>
           <Button onClick={() => setIsDialogOpen(true)}>
             <PlusIcon />
             {dictionary.agents.list.newAgent}
