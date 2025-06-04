@@ -36,7 +36,11 @@ const ResponsiveDialog = ({
   if (isMobile) {
     return (
       <Drawer open={open} onOpenChange={onOpenChange}>
-        <DrawerContent>
+        <DrawerContent
+          onInteractOutside={(e) => {
+            e.preventDefault();
+          }}
+        >
           <DrawerHeader>
             <DrawerTitle>{title}</DrawerTitle>
             {!!description && (
@@ -51,7 +55,11 @@ const ResponsiveDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent
+        onInteractOutside={(e) => {
+          e.preventDefault();
+        }}
+      >
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
@@ -62,4 +70,4 @@ const ResponsiveDialog = ({
   );
 };
 
-export default ResponsiveDialog;
+export { ResponsiveDialog };

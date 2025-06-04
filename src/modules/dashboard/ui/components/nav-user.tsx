@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { forwardRef } from "react";
 
-import GeneratedAvatar from "@/components/generated-avatar";
+import { GeneratedAvatar } from "@/components/generated-avatar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
