@@ -8,6 +8,7 @@ import {
 } from "@tanstack/react-table";
 
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 import { Dictionary } from "@/types/dictionary";
 import { EmptyState } from "./empty-state";
 
@@ -32,7 +33,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="rounded-lg border bg-background overflow-hidden">
-      <Table>
+      <Table className="table-fixed w-full">
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
@@ -43,7 +44,14 @@ export function DataTable<TData, TValue>({
                 onClick={() => onRowClick?.(row.original)}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className="text-sm p-4">
+                  <TableCell
+                    key={cell.id}
+                    className={cn(
+                      "text-sm p-4",
+                      (cell.column.columnDef.meta as { className?: string })
+                        ?.className
+                    )}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
