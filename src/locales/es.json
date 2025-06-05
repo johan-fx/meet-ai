@@ -86,7 +86,8 @@
         "title": "No se encontraron agentes",
         "description": "Crea un agente para unirte a tus reuniones. Cada agente seguirá tus instrucciones y podrá interactuar con los participantes durante la llamada.",
         "ctaLabel": "Crea tu primer agente"
-      }
+      },
+      "searchPlaceholder": "Buscar por nombre"
     },
     "form": {
       "name": "Nombre",
@@ -101,6 +102,13 @@
         "nameRequired": "Se requiere el nombre del agente",
         "instructionsRequired": "Se requieren instrucciones del agente"
       }
+    }
+  },
+  "global": {
+    "pagination": {
+      "previous": "Anterior",
+      "next": "Siguiente",
+      "pageOf": "Página {page} de {totalPages}"
     }
   }
 }

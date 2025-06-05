@@ -1,5 +1,6 @@
 import { auth } from "@/lib/auth";
 import { getDictionary, SupportedLocale } from "@/lib/dictionary";
+import { loadAgentsFilterParams } from "@/modules/agents/server/params";
 import { AgentsListHeader } from "@/modules/agents/ui/components/agents-list-header";
 import {
   AgentsView,
@@ -14,8 +15,9 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
-const Page = async ({ params }: PageProps) => {
+const Page = async ({ params, searchParams }: PageProps) => {
   const { locale } = await params;
+  const filters = await loadAgentsFilterParams(searchParams);
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -27,7 +29,11 @@ const Page = async ({ params }: PageProps) => {
   const dictionary = await getDictionary(locale as SupportedLocale);
 
   const queryClient = getQueryClient();
-  void queryClient.prefetchQuery(trpc.agents.getMany.queryOptions());
+  void queryClient.prefetchQuery(
+    trpc.agents.getMany.queryOptions({
+      ...filters,
+    })
+  );
 
   return (
     <>
