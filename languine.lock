@@ -64,6 +64,7 @@ files:
     agents.list.title: 4341e8044c2b0598b7c026846b080781
     agents.list.newAgent: 34b1143dd1d64c24c9d94b3e03584821
     agents.list.newAgentDescription: 897a0d98e7fc5c6fd502c17b49a78919
+    agents.list.searchPlaceholder: a15e9d627362cb8837d0b910bc53a55e
     agents.list.headers.name: 49ee3087348e8d44e1feda1917443987
     agents.list.headers.instructions: 49cc8e6220245b65cd7d20fc6ccc74f5
     agents.list.headers.meetings: 2fd5c01f4902b65ff3d8dd3d60565520
@@ -81,3 +82,6 @@ files:
     agents.form.save: c9cc8cce247e49bae79f15173ce97354
     agents.form.errors.nameRequired: 649ff3413871277ec215494afbda6458
     agents.form.errors.instructionsRequired: 75342e830c658a0db78c5a6e6f773a39
+    global.pagination.previous: dd1f775e443ff3b9a89270713580a51b
+    global.pagination.next: 10ac3d04253ef7e1ddc73e6091c0cd55
+    global.pagination.pageOf: c55db04c8c3722f2e1d9b2d618134a6c

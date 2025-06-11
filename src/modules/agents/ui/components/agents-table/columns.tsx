@@ -13,6 +13,9 @@ export const getColumns = (
   {
     accessorKey: "name",
     header: dictionary.agents.list.headers.name,
+    meta: {
+      className: "w-full",
+    },
     cell: ({ row }) => {
       return (
         <div className="flex flex-col gap-y-1">
@@ -40,6 +43,9 @@ export const getColumns = (
   {
     accessorKey: "meetingCount",
     header: dictionary.agents.list.headers.meetings,
+    meta: {
+      className: "w-36",
+    },
     cell: ({ row }) => {
       const { meetingCount } = row.original;
       return (

@@ -76,6 +76,7 @@
       "title": "My Agents",
       "newAgent": "New Agent",
       "newAgentDescription": "Create a new agent",
+      "searchPlaceholder": "Search by name",
       "headers": {
         "name": "Name",
         "instructions": "Instructions",
@@ -101,6 +102,13 @@
         "nameRequired": "Agent name is required",
         "instructionsRequired": "Agent instructions are required"
       }
+    }
+  },
+  "global": {
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "pageOf": "Page {page} of {totalPages}"
     }
   }
 }
