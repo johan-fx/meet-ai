@@ -34,6 +34,6 @@ export const auth = betterAuth({
 		window: 15 * 60 * 1000, // 15 minutes
 		max: 100, // max requests per window per IP
 	},
-	secret: process.env.BETTER_AUTH_SECRET,
+	secret: requireEnv("BETTER_AUTH_SECRET"),
 	trustedOrigins: [process.env.NEXT_PUBLIC_APP_URL ?? ""],
 });
