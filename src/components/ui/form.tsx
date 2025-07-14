@@ -2,7 +2,6 @@
 
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
-import get from "just-safe-get";
 import * as React from "react";
 import {
   Controller,
@@ -16,7 +15,6 @@ import {
 
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import { Dictionary } from "@/types/dictionary";
 
 const Form = FormProvider;
 
@@ -140,12 +138,11 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
 
 function FormMessage({
   className,
-  dictionary,
   ...props
-}: React.ComponentProps<"p"> & { dictionary?: Dictionary }) {
+}: React.ComponentProps<"p">) {
   const { error, formMessageId } = useFormField();
   const body = error
-    ? get(dictionary ?? {}, error?.message ?? "")
+    ? error?.message
     : props.children;
 
   if (!body) {

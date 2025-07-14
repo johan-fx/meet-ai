@@ -1,12 +1,24 @@
-import { internationalizationMiddleware } from "@/middlewares/internationalization.middleware";
 import type { NextRequest } from "next/server";
+import { authMiddleware } from "@/middlewares/auth.middleware";
+import { i18nMiddleware } from "@/middlewares/i18n.middleware";
+
+export async function middleware(request: NextRequest) {
+	// Run auth middleware first for protected routes
+	const authResponse = await authMiddleware(request);
+
+	// If auth middleware returned a response (redirect), use it
+	if (authResponse) {
+		return authResponse;
+	}
+
+	// Otherwise, run i18n middleware for locale handling
+	return i18nMiddleware(request);
+}
 
 export const config = {
-  // matcher tells Next.js which routes to run the middleware on. This runs the
-  // middleware on all routes except for static assets and Posthog ingest
-  matcher: ["/((?!api|_next/static|_next/image|ingest|images|favicon.ico).*)"],
+	// Match all pathnames except for
+	// - API routes (/api)
+	// - Internal Next.js paths (/_next, /_vercel)
+	// - Files with extensions (favicon.ico, etc.)
+	matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
 };
-
-export function middleware(request: NextRequest) {
-  return internationalizationMiddleware(request);
-}

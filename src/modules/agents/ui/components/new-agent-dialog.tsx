@@ -1,31 +1,27 @@
+import { useTranslations } from "next-intl";
 import { ResponsiveDialog } from "@/components/responsive-dialog";
-import { ViewProps } from "@/types/view";
 import { AgentsForm } from "./agents-form";
 
-interface NewAgentDialogProps extends ViewProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
+interface NewAgentDialogProps {
+	open: boolean;
+	onOpenChange: (open: boolean) => void;
 }
 
-const NewAgentDialog = ({
-  dictionary,
-  open,
-  onOpenChange,
-}: NewAgentDialogProps) => {
-  return (
-    <ResponsiveDialog
-      title={dictionary.agents.list.newAgent}
-      description={dictionary.agents.list.newAgentDescription}
-      open={open}
-      onOpenChange={onOpenChange}
-    >
-      <AgentsForm
-        dictionary={dictionary}
-        onCancel={() => onOpenChange(false)}
-        onSuccess={() => onOpenChange(false)}
-      />
-    </ResponsiveDialog>
-  );
+const NewAgentDialog = ({ open, onOpenChange }: NewAgentDialogProps) => {
+	const t = useTranslations("agents.list");
+	return (
+		<ResponsiveDialog
+			title={t("newAgent")}
+			description={t("newAgentDescription")}
+			open={open}
+			onOpenChange={onOpenChange}
+		>
+			<AgentsForm
+				onCancel={() => onOpenChange(false)}
+				onSuccess={() => onOpenChange(false)}
+			/>
+		</ResponsiveDialog>
+	);
 };
 
 export { NewAgentDialog };
