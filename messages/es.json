@@ -7,7 +7,7 @@
       "email": "Correo electrónico",
       "password": "Contraseña",
       "confirmPassword": "Confirmar contraseña",
-      "signUp": "Regístrate",
+      "signUp": "Registrarse",
       "namePlaceholder": "Ingresa tu nombre",
       "nameRequired": "El nombre es obligatorio",
       "emailPlaceholder": "Ingresa tu correo electrónico",
@@ -19,7 +19,7 @@
       "passwordsDoNotMatch": "Las contraseñas no coinciden",
       "errorTitle": "Error",
       "defaultError": "Ocurrió un error",
-      "orContinueWith": "O continúa con",
+      "orContinueWith": "O continuar con",
       "google": "Google",
       "github": "GitHub",
       "alreadyHaveAccount": "¿Ya tienes una cuenta?",
@@ -43,7 +43,7 @@
       "errorTitle": "Error",
       "defaultError": "Ocurrió un error",
       "signIn": "Iniciar sesión",
-      "orContinueWith": "O continúa con",
+      "orContinueWith": "O continuar con",
       "google": "Google",
       "github": "GitHub",
       "noAccount": "¿No tienes una cuenta?",
@@ -73,8 +73,8 @@
   },
   "agents": {
     "list": {
-      "title": "Mis Agentes",
-      "newAgent": "Nuevo Agente",
+      "title": "Mis agentes",
+      "newAgent": "Nuevo agente",
       "newAgentDescription": "Crear un nuevo agente",
       "headers": {
         "name": "Nombre",
@@ -87,11 +87,13 @@
         "description": "Crea un agente para unirte a tus reuniones. Cada agente seguirá tus instrucciones y podrá interactuar con los participantes durante la llamada.",
         "ctaLabel": "Crea tu primer agente"
       },
-      "searchPlaceholder": "Buscar por nombre"
+      "searchPlaceholder": "Buscar por nombre",
+      "editAgent": "Editar agente",
+      "editAgentDescription": "Editar los detalles del agente"
     },
     "form": {
       "name": "Nombre",
-      "namePlaceholder": "Ej. Tutor de Matemáticas",
+      "namePlaceholder": "Ej. Tutor de matemáticas",
       "instructions": "Instrucciones",
       "instructionsPlaceholder": "Ej. Eres un tutor de matemáticas. Eres bueno explicando conceptos matemáticos.",
       "create": "Crear",
@@ -99,8 +101,16 @@
       "cancel": "Cancelar",
       "save": "Guardar",
       "errors": {
-        "nameRequired": "Se requiere el nombre del agente",
-        "instructionsRequired": "Se requieren instrucciones del agente"
+        "nameRequired": "El nombre del agente es obligatorio",
+        "instructionsRequired": "Las instrucciones del agente son obligatorias"
+      },
+      "delete": "Eliminar",
+      "update": "Actualizar"
+    },
+    "detail": {
+      "deleteDialog": {
+        "title": "¿Estás seguro?",
+        "description": "La siguiente acción eliminará {meetingCount} reuniones asociadas. Esta acción no se puede deshacer."
       }
     }
   },
@@ -109,6 +119,11 @@
       "previous": "Anterior",
       "next": "Siguiente",
       "pageOf": "Página {page} de {totalPages}"
+    },
+    "form": {
+      "cancel": "Cancelar",
+      "accept": "Aceptar",
+      "confirm": "Confirmar"
     }
   }
 }
