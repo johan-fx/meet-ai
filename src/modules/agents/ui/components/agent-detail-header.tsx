@@ -26,14 +26,14 @@ interface Props {
 	agentId?: string;
 	agentName?: string;
 	onEdit?: () => void;
-	onDelete?: () => void;
+	onRemove?: () => void;
 }
 
 export const AgentDetailHeader = ({
 	agentId,
 	agentName,
 	onEdit = () => {},
-	onDelete = () => {},
+	onRemove = () => {},
 }: Props) => {
 	const tList = useTranslations("agents.list");
 	const tForm = useTranslations("agents.form");
@@ -77,7 +77,7 @@ export const AgentDetailHeader = ({
 							<PencilIcon className="size-4 text-black" />
 							{tForm("edit")}
 						</DropdownMenuItem>
-						<DropdownMenuItem onClick={onDelete}>
+						<DropdownMenuItem onClick={onRemove}>
 							<TrashIcon className="size-4 text-black" />
 							{tForm("delete")}
 						</DropdownMenuItem>

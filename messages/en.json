@@ -77,6 +77,8 @@
       "newAgent": "New Agent",
       "newAgentDescription": "Create a new agent",
       "searchPlaceholder": "Search by name",
+      "editAgent": "Edit Agent",
+      "editAgentDescription": "Edit the agent details",
       "headers": {
         "name": "Name",
         "instructions": "Instructions",
@@ -99,13 +101,25 @@
       "cancel": "Cancel",
       "delete": "Delete",
       "save": "Save",
+      "update": "Update",
       "errors": {
         "nameRequired": "Agent name is required",
         "instructionsRequired": "Agent instructions are required"
       }
+    },
+    "detail": {
+      "deleteDialog": {
+        "title": "Are you sure?",
+        "description": "The following action will delete {meetingCount} associated meetings. This action cannot be undone."
+      }
     }
   },
   "global": {
+    "form": {
+      "cancel": "Cancel",
+      "accept": "Accept",
+      "confirm": "Confirm"
+    },
     "pagination": {
       "previous": "Previous",
       "next": "Next",

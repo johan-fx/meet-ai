@@ -45,6 +45,27 @@ const AgentsForm = ({
 					trpc.agents.getMany.queryOptions({}),
 				);
 
+				// TODO: Invalidate free tier usage
+
+				onSuccess?.();
+			},
+			onError: (error) => {
+				toast.error(error.message);
+
+				if (error.data?.code === "FORBIDDEN") {
+					router.push("/upgrade");
+				}
+			},
+		}),
+	);
+
+	const updateAgent = useMutation(
+		trpc.agents.update.mutationOptions({
+			onSuccess: async () => {
+				await queryClient.invalidateQueries(
+					trpc.agents.getMany.queryOptions({}),
+				);
+
 				if (initialValues?.id) {
 					await queryClient.invalidateQueries(
 						trpc.agents.getOne.queryOptions({ id: initialValues.id }),
@@ -71,12 +92,15 @@ const AgentsForm = ({
 		},
 	});
 
-	const isEdit = !!initialValues;
-	const isPending = createAgent.isPending;
+	const isEdit = !!initialValues?.id;
+	const isPending = createAgent.isPending || updateAgent.isPending;
 
 	const onSubmit = (values: z.infer<typeof newAgentSchema>) => {
 		if (isEdit) {
-			// TODO: Implement edit agent
+			updateAgent.mutate({
+				...values,
+				id: initialValues.id,
+			});
 		} else {
 			createAgent.mutate(values);
 		}
@@ -138,7 +162,7 @@ const AgentsForm = ({
 						className="flex-1 md:flex-none"
 					>
 						{isPending && <Loader2 className="size-4 animate-spin" />}
-						{isEdit ? t("save") : t("create")}
+						{isEdit ? t("update") : t("create")}
 					</Button>
 				</div>
 			</form>
