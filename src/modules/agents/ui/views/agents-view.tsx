@@ -29,11 +29,13 @@ export const AgentsView = () => {
 				data={data.items}
 				onRowClick={(row) => router.push(`/agents/${row.id}`)}
 			/>
-			<DataPagination
-				totalPages={data.totalPages}
-				page={filters.page}
-				onPageChange={(page: number) => setFilters({ ...filters, page })}
-			/>
+			{data.totalPages > 0 && (
+				<DataPagination
+					totalPages={data.totalPages}
+					page={filters.page}
+					onPageChange={(page: number) => setFilters({ ...filters, page })}
+				/>
+			)}
 		</div>
 	);
 };
