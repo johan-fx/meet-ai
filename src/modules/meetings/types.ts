@@ -1,0 +1,26 @@
+import type { inferRouterOutputs } from "@trpc/server";
+import type { z } from "zod";
+import type { meetings } from "@/db/schema";
+import type {
+	newMeetingSchema,
+	updateMeetingSchema,
+	updateMeetingStatusSchema,
+} from "./schemas";
+import type { meetingsRouter } from "./server/procedures";
+
+type RouterOutputs = inferRouterOutputs<typeof meetingsRouter>;
+
+export type MeetingGetOne = RouterOutputs["getOne"];
+export type MeetingGetMany = RouterOutputs["getMany"];
+
+export type Meeting = typeof meetings.$inferSelect;
+export type NewMeeting = z.infer<typeof newMeetingSchema>;
+export type UpdateMeeting = z.infer<typeof updateMeetingSchema>;
+export type UpdateMeetingStatus = z.infer<typeof updateMeetingStatusSchema>;
+
+export type MeetingStatus =
+	| "upcoming"
+	| "active"
+	| "completed"
+	| "processing"
+	| "cancelled";
