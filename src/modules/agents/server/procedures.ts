@@ -33,8 +33,6 @@ export const agentsRouter = createTRPCRouter({
 				});
 			}
 
-			// Add a timeout to simulate a slow query
-			await new Promise((resolve) => setTimeout(resolve, 5000));
 
 			return existingAgent;
 		}),
