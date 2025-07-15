@@ -1,5 +1,5 @@
-import { inferRouterOutputs } from "@trpc/server";
-import { agentsRouter } from "./server/procedures";
+import type { inferRouterOutputs } from "@trpc/server";
+import type { agentsRouter } from "./server/procedures";
 
 type RouterOutputs = inferRouterOutputs<typeof agentsRouter>;
 
