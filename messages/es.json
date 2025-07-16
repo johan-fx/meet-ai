@@ -161,6 +161,14 @@
         "nameRequired": "Se requiere el nombre de la reunión",
         "agentRequired": "Se requiere un agente"
       }
+    },
+    "status": {
+      "placeholder": "Seleccionar un estado",
+      "upcoming": "Próximo",
+      "active": "Activo",
+      "completed": "Completado",
+      "processing": "En proceso",
+      "cancelled": "Cancelado"
     }
   }
 }
