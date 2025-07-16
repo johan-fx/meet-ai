@@ -41,6 +41,11 @@ export const MeetingDetailView = ({ meetingId }: Props) => {
 		description: tDetail("deleteDialog.description"),
 	});
 
+	const [CancelMeetingConfirmDialog, cancelMeetingConfirm] = useConfirm({
+		title: tDetail("cancelDialog.title"),
+		description: tDetail("cancelDialog.description"),
+	});
+
 	const removeMeeting = useMutation(
 		trpc.meetings.remove.mutationOptions({
 			onSuccess: async () => {
@@ -56,6 +61,33 @@ export const MeetingDetailView = ({ meetingId }: Props) => {
 			},
 		}),
 	);
+
+	const cancelMeeting = useMutation(
+		trpc.meetings.updateStatus.mutationOptions({
+			onSuccess: async () => {
+				await queryClient.invalidateQueries(
+					trpc.meetings.getOne.queryOptions({ id: meetingId }),
+				);
+				toast.success(tDetail("cancelSuccess"));
+			},
+			onError: (error) => {
+				toast.error(error.message);
+			},
+		}),
+	);
+
+	const handleCancelMeeting = async () => {
+		const confirmed = await cancelMeetingConfirm();
+
+		if (!confirmed) {
+			return;
+		}
+
+		await cancelMeeting.mutateAsync({
+			id: meetingId,
+			status: MeetingStatus.CANCELLED,
+		});
+	};
 
 	const handleRemoveMeeting = async () => {
 		const confirmed = await removeMeetingConfirm();
@@ -80,6 +112,7 @@ export const MeetingDetailView = ({ meetingId }: Props) => {
 	return (
 		<>
 			<RemoveMeetingConfirmDialog />
+			<CancelMeetingConfirmDialog />
 			<EditMeetingDialog
 				open={editMeetingDialogOpen}
 				initialValues={data}
@@ -98,8 +131,8 @@ export const MeetingDetailView = ({ meetingId }: Props) => {
 						{isUpcoming && (
 							<UpcomingState
 								meetingId={meetingId}
-								onCancelMeeting={() => {}}
-								isCancelling={false}
+								onCancelMeeting={handleCancelMeeting}
+								isCancelling={cancelMeeting.isPending}
 							/>
 						)}
 						{isCancelled && <CancelledState />}

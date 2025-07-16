@@ -161,9 +161,14 @@
       }
     },
     "detail": {
+      "cancelSuccess": "Meeting cancelled successfully",
       "deleteDialog": {
         "title": "Are you sure?",
         "description": "The following action will delete the meeting. This action cannot be undone."
+      },
+      "cancelDialog": {
+        "title": "Are you sure?",
+        "description": "The following action will cancel the meeting. This action cannot be undone."
       },
       "upcoming": {
         "title": "No started yet",
