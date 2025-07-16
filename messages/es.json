@@ -134,7 +134,20 @@
       "title": "Mis Reuniones",
       "newMeeting": "Nueva Reunión",
       "newMeetingDescription": "Crear una nueva reunión",
-      "searchPlaceholder": "Buscar por nombre"
+      "searchPlaceholder": "Buscar por nombre",
+      "durationUnknown": "Desconocido",
+      "headers": {
+        "name": "Nombre",
+        "agent": "Agente",
+        "status": "Estado",
+        "duration": "Duración",
+        "createdAt": "Creado En"
+      },
+      "emptyState": {
+        "title": "No se encontraron reuniones",
+        "description": "Crea una reunión para iniciar una nueva llamada. Cada reunión tendrá un agente que seguirá tus instrucciones y podrá interactuar con los participantes durante la llamada.",
+        "ctaLabel": "Crea tu primera reunión"
+      }
     },
     "form": {
       "name": "Nombre",

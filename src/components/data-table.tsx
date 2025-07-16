@@ -9,18 +9,19 @@ import {
 
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
-import { EmptyState } from "./empty-state";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
 	data: TData[];
 	onRowClick?: (row: TData) => void;
+	emptyState?: React.ReactNode;
 }
 
 export function DataTable<TData, TValue>({
 	columns,
 	data,
 	onRowClick,
+	emptyState,
 }: DataTableProps<TData, TValue>) {
 	const table = useReactTable({
 		data,
@@ -32,7 +33,7 @@ export function DataTable<TData, TValue>({
 		<div className="rounded-lg border bg-background overflow-hidden">
 			<Table className="table-fixed w-full">
 				<TableBody>
-					{table.getRowModel().rows?.length ? (
+					{table.getRowModel().rows?.length > 0 ? (
 						table.getRowModel().rows.map((row) => (
 							<TableRow
 								key={row.id}
@@ -60,7 +61,7 @@ export function DataTable<TData, TValue>({
 								colSpan={columns.length}
 								className="h-19 text-center text-muted-foreground"
 							>
-								<EmptyState />
+								{emptyState}
 							</TableCell>
 						</TableRow>
 					)}

@@ -3,11 +3,12 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { DataPagination } from "@/components/data-pagination";
+import { DataTable } from "@/components/data-table";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTRPC } from "@/trpc/client";
 import { useAgentsFilters } from "../../hooks/use-agents-filters";
 import { useColumns } from "../components/agents-table/columns";
-import { DataTable } from "../components/agents-table/data-table";
+import { AgentsTableEmptyState } from "../components/agents-table/empty-state";
 
 export const AgentsView = () => {
 	const router = useRouter();
@@ -28,6 +29,7 @@ export const AgentsView = () => {
 				columns={columns}
 				data={data.items}
 				onRowClick={(row) => router.push(`/agents/${row.id}`)}
+				emptyState={<AgentsTableEmptyState />}
 			/>
 			{data.totalPages > 0 && (
 				<DataPagination

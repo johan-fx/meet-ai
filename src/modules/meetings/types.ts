@@ -11,7 +11,7 @@ import type { meetingsRouter } from "./server/procedures";
 type RouterOutputs = inferRouterOutputs<typeof meetingsRouter>;
 
 export type MeetingGetOne = RouterOutputs["getOne"];
-export type MeetingGetMany = RouterOutputs["getMany"];
+export type MeetingGetMany = RouterOutputs["getMany"]["items"];
 
 export type Meeting = typeof meetings.$inferSelect;
 export type NewMeeting = z.infer<typeof newMeetingSchema>;
