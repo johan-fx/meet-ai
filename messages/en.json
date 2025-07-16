@@ -119,6 +119,8 @@
       "title": "My Meetings",
       "newMeeting": "New Meeting",
       "newMeetingDescription": "Create a new meeting",
+      "editMeeting": "Edit Meeting",
+      "editMeetingDescription": "Edit the meeting details",
       "searchPlaceholder": "Search by name",
       "durationUnknown": "Unknown",
       "headers": {
@@ -148,11 +150,20 @@
       "agent": "Agent",
       "agentPlaceholder": "Select an agent",
       "create": "Create",
+      "delete": "Delete",
+      "edit": "Edit",
+      "update": "Update",
       "agentDescription": "Not found the agent you want?",
       "createNewAgent": "Create new agent",
       "errors": {
         "nameRequired": "Meeting name is required",
         "agentRequired": "Agent is required"
+      }
+    },
+    "detail": {
+      "deleteDialog": {
+        "title": "Are you sure?",
+        "description": "The following action will delete the meeting. This action cannot be undone."
       }
     }
   },
@@ -163,7 +174,8 @@
       "confirm": "Confirm",
       "select": "Select an option",
       "selectNoSearchResults": "No results found",
-      "search": "Search..."
+      "search": "Search...",
+      "loading": "Loading..."
     },
     "pagination": {
       "previous": "Previous",

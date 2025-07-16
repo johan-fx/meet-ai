@@ -1,4 +1,4 @@
-import { ChevronsUpDownIcon } from "lucide-react";
+import { ChevronsUpDownIcon, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -23,6 +23,7 @@ interface Props {
 	placeholder?: string;
 	isSearchable?: boolean;
 	className?: string;
+	loading?: boolean;
 }
 
 export const CommandSelect = ({
@@ -32,6 +33,7 @@ export const CommandSelect = ({
 	value,
 	className,
 	placeholder,
+	loading,
 }: Props) => {
 	const t = useTranslations("global.form");
 	const [open, setOpen] = useState(false);
@@ -53,9 +55,18 @@ export const CommandSelect = ({
 					className,
 				)}
 				onClick={() => setOpen(!open)}
+				disabled={loading}
 			>
-				<div>{selectedOption?.children ?? placeholder ?? t("select")}</div>
-				<ChevronsUpDownIcon />
+				<div>
+					{loading
+						? t("loading")
+						: (selectedOption?.children ?? placeholder ?? t("select"))}
+				</div>
+				{loading ? (
+					<Loader2 className="size-4 animate-spin" />
+				) : (
+					<ChevronsUpDownIcon />
+				)}
 			</Button>
 			<CommandResponsiveDialog
 				shouldFilter={!onSearch}
