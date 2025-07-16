@@ -5,9 +5,9 @@ import { CornerDownRightIcon, VideoIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { GeneratedAvatar } from "@/components/generated-avatar";
 import { Badge } from "@/components/ui/badge";
-import type { AgentGetOne } from "../../../types";
+import type { AgentGetMany } from "../../../types";
 
-export const useColumns = (): ColumnDef<AgentGetOne>[] => {
+export const useColumns = (): ColumnDef<AgentGetMany[number]>[] => {
 	const t = useTranslations("agents.list");
 
 	return [

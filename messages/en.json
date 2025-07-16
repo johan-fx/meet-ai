@@ -119,7 +119,20 @@
       "title": "My Meetings",
       "newMeeting": "New Meeting",
       "newMeetingDescription": "Create a new meeting",
-      "searchPlaceholder": "Search by name"
+      "searchPlaceholder": "Search by name",
+      "durationUnknown": "Unknown",
+      "headers": {
+        "name": "Name",
+        "agent": "Agent",
+        "status": "Status",
+        "duration": "Duration",
+        "createdAt": "Created At"
+      },
+      "emptyState": {
+        "title": "No meetings found",
+        "description": "Create a meeting to start a new call. Each meeting will have an agent that will follow your instructions and can interact with participants during the call.",
+        "ctaLabel": "Create your first meeting"
+      }
     },
     "form": {
       "name": "Name",

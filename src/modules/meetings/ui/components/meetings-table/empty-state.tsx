@@ -2,11 +2,11 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { NewAgentDialog } from "../new-agent-dialog";
+import { NewMeetingDialog } from "../new-meeting-dialog";
 
-const AgentsTableEmptyState = () => {
+const MeetingsTableEmptyState = () => {
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
-	const t = useTranslations("agents.list");
+	const t = useTranslations("meetings.list");
 	return (
 		<>
 			<div className="flex flex-col items-center justify-center py-12">
@@ -34,9 +34,9 @@ const AgentsTableEmptyState = () => {
 					</Button>
 				</div>
 			</div>
-			<NewAgentDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
+			<NewMeetingDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
 		</>
 	);
 };
 
-export { AgentsTableEmptyState };
+export { MeetingsTableEmptyState };
