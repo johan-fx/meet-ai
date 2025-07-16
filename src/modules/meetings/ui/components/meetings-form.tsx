@@ -45,7 +45,7 @@ const MeetingsForm = ({
 	const [agentSearch, setAgentSearch] = useState<string | undefined>(undefined);
 	const [openNewAgentDialog, setOpenNewAgentDialog] = useState(false);
 
-	const agents = useQuery(
+	const { data: agents, isLoading: isLoadingAgents } = useQuery(
 		trpc.agents.getMany.queryOptions({
 			pageSize: 100,
 			search: agentSearch,
@@ -154,7 +154,7 @@ const MeetingsForm = ({
 										value={field.value}
 										onSelect={field.onChange}
 										onSearch={setAgentSearch}
-										options={(agents.data?.items ?? []).map((agent) => ({
+										options={(agents?.items ?? []).map((agent) => ({
 											id: agent.id,
 											value: agent.id,
 											children: (
@@ -169,6 +169,7 @@ const MeetingsForm = ({
 											),
 										}))}
 										placeholder={t("agentPlaceholder")}
+										loading={isLoadingAgents}
 									/>
 								</FormControl>
 								<FormDescription>
