@@ -173,9 +173,25 @@ files:
     agents.form.errors.instructionsRequired: 75342e830c658a0db78c5a6e6f773a39
     agents.detail.deleteDialog.title: 729a51874fe901b092899e9e8b31c97a
     agents.detail.deleteDialog.description: 4a4713a6d3abbaea5c03440341f607a7
+    meetings.list.title: 3c93aef1c343aa1265698b1d9852d5d8
+    meetings.list.newMeeting: cb646b8f300032a0e184b230534ef670
+    meetings.list.newMeetingDescription: 352cd4b01f8e6f335a0ced27b147eeff
+    meetings.list.searchPlaceholder: a15e9d627362cb8837d0b910bc53a55e
+    meetings.form.name: 49ee3087348e8d44e1feda1917443987
+    meetings.form.namePlaceholder: bfc5872d892eef32c16045b374e6fc69
+    meetings.form.agent: 7446050b848d839fe9847073ff94cfd6
+    meetings.form.agentPlaceholder: 21082c310debf4228a5c9fd82615c439
+    meetings.form.create: 686e697538050e4664636337cc3b834f
+    meetings.form.agentDescription: 39ace5d7acca75804184bd7a2a408a4b
+    meetings.form.createNewAgent: 9394dd1228926f808a8bf071df813037
+    meetings.form.errors.nameRequired: 7f480b22d9f425a70fc1d1d3f2837dcf
+    meetings.form.errors.agentRequired: 74a3192ab9e7cdea49009dba86684105
     global.form.cancel: ea4788705e6873b424c65e91c2846b19
     global.form.accept: c4408d335012a56ff58937d78050efad
     global.form.confirm: 70d9be9b139893aa6c69b5e77e614311
+    global.form.select: 59d5d61e9e9b2dc33a0211623cc4fe11
+    global.form.selectNoSearchResults: e576c23d915755d83e2d1f47bd9f6c22
+    global.form.search: 2a37324bb4c331c859044121df3f576b
     global.pagination.previous: dd1f775e443ff3b9a89270713580a51b
     global.pagination.next: 10ac3d04253ef7e1ddc73e6091c0cd55
     global.pagination.pageOf: c55db04c8c3722f2e1d9b2d618134a6c
