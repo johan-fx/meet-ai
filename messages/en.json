@@ -161,9 +161,37 @@
       }
     },
     "detail": {
+      "cancelSuccess": "Meeting cancelled successfully",
       "deleteDialog": {
         "title": "Are you sure?",
         "description": "The following action will delete the meeting. This action cannot be undone."
+      },
+      "cancelDialog": {
+        "title": "Are you sure?",
+        "description": "The following action will cancel the meeting. This action cannot be undone."
+      },
+      "upcoming": {
+        "title": "No started yet",
+        "description": "Once you start this meeting, a summary will appear here.",
+        "startMeeting": "Start Meeting",
+        "cancelMeeting": "Cancel Meeting"
+      },
+      "active": {
+        "title": "Meeting in progress",
+        "description": "The meeting is in progress. You can join the meeting to continue.",
+        "joinMeeting": "Join Meeting"
+      },
+      "cancelled": {
+        "title": "Meeting cancelled",
+        "description": "The meeting was cancelled by the host."
+      },
+      "processing": {
+        "title": "Meeting completed",
+        "description": "The meeting has been completed and is being processed. You can review the summary and download the transcript soon."
+      },
+      "completed": {
+        "title": "Meeting completed",
+        "description": "The meeting has been completed and is being processed. You can review the summary and download the transcript soon."
       }
     }
   },
