@@ -15,6 +15,7 @@ import {
 	updateMeetingSchema,
 	updateMeetingStatusSchema,
 } from "../schemas";
+import { MeetingStatus } from "../types";
 
 export const meetingsRouter = createTRPCRouter({
 	getOne: protectedProcedure
@@ -50,7 +51,13 @@ export const meetingsRouter = createTRPCRouter({
 					.default(DEFAULT_PAGE_SIZE),
 				search: z.string().nullish(),
 				status: z
-					.enum(["upcoming", "active", "completed", "processing", "cancelled"])
+					.enum([
+						MeetingStatus.UPCOMING,
+						MeetingStatus.ACTIVE,
+						MeetingStatus.COMPLETED,
+						MeetingStatus.PROCESSING,
+						MeetingStatus.CANCELLED,
+					])
 					.nullish(),
 				agentId: z.string().nullish(),
 			}),
@@ -193,12 +200,7 @@ export const meetingsRouter = createTRPCRouter({
 			const { id, status, startedAt, endedAt } = input;
 
 			const updateData: {
-				status:
-					| "upcoming"
-					| "active"
-					| "completed"
-					| "processing"
-					| "cancelled";
+				status: MeetingStatus;
 				updatedAt: Date;
 				startedAt?: Date | null;
 				endedAt?: Date | null;
@@ -234,13 +236,7 @@ export const meetingsRouter = createTRPCRouter({
 	getByStatus: protectedProcedure
 		.input(
 			z.object({
-				status: z.enum([
-					"upcoming",
-					"active",
-					"completed",
-					"processing",
-					"cancelled",
-				]),
+				status: z.nativeEnum(MeetingStatus),
 				limit: z.number().optional().default(10),
 			}),
 		)

@@ -6,7 +6,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DEFAULT_PAGE } from "@/constants";
 import { useMeetingsFilters } from "../../hooks/use-meetings-filters";
+import { MeetingsAgentFilter } from "./meetings-agent-filter";
 import { MeetingsSearchFilter } from "./meetings-search-filter";
+import { MeetingsStatusFilter } from "./meetings-status-filter";
 import { NewMeetingDialog } from "./new-meeting-dialog";
 
 const MeetingsListHeader = () => {
@@ -14,10 +16,16 @@ const MeetingsListHeader = () => {
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [filters, setFilters] = useMeetingsFilters();
 
-	const isAnyFilterApplied = !!filters.search;
+	const isAnyFilterApplied =
+		!!filters.search || !!filters.status || !!filters.agentId;
 
 	const onClearFilters = () => {
-		setFilters({ search: "", page: DEFAULT_PAGE });
+		setFilters({
+			search: "",
+			page: DEFAULT_PAGE,
+			status: null,
+			agentId: null,
+		});
 	};
 
 	return (
@@ -30,8 +38,11 @@ const MeetingsListHeader = () => {
 						{t("newMeeting")}
 					</Button>
 				</div>
-				<div className="flex items-center">
+				<div className="flex flex-col md:flex-row md:items-center gap-2">
 					<MeetingsSearchFilter />
+					<MeetingsStatusFilter />
+					<MeetingsAgentFilter />
+
 					{isAnyFilterApplied && (
 						<Button
 							onClick={onClearFilters}

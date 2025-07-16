@@ -186,6 +186,12 @@ files:
     meetings.list.emptyState.title: d93b1ccbe076d7bd3bd73a004f1594e0
     meetings.list.emptyState.description: b7049b3c8f4fc84499a319c79079890e
     meetings.list.emptyState.ctaLabel: 33935a971adf175dc2d825533356daec
+    meetings.status.placeholder: 5ed7d8757f51d8e13f2b5251de9055c7
+    meetings.status.upcoming: 14ab5b8597ef2c5fc1748c6cf1bdb81d
+    meetings.status.active: 4d3d769b812b6faa6b76e1a8abaece2d
+    meetings.status.completed: 07ca5050e697392c9ed47e6453f1453f
+    meetings.status.processing: 643562a9ae7099c8aabfdc93478db117
+    meetings.status.cancelled: a149e85a44aeec9140e92733d9ed694e
     meetings.form.name: 49ee3087348e8d44e1feda1917443987
     meetings.form.namePlaceholder: bfc5872d892eef32c16045b374e6fc69
     meetings.form.agent: 7446050b848d839fe9847073ff94cfd6

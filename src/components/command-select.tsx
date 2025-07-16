@@ -1,4 +1,4 @@
-import { ChevronDownIcon, ChevronsUpDownIcon } from "lucide-react";
+import { ChevronsUpDownIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -36,6 +36,12 @@ export const CommandSelect = ({
 	const t = useTranslations("global.form");
 	const [open, setOpen] = useState(false);
 	const selectedOption = options.find((option) => option.value === value);
+
+	const handleOpenChange = (open: boolean) => {
+		setOpen(open);
+		onSearch?.("");
+	};
+
 	return (
 		<>
 			<Button
@@ -54,7 +60,7 @@ export const CommandSelect = ({
 			<CommandResponsiveDialog
 				shouldFilter={!onSearch}
 				open={open}
-				onOpenChange={setOpen}
+				onOpenChange={handleOpenChange}
 			>
 				<CommandInput placeholder={t("search")} onValueChange={onSearch} />
 				<CommandList>
