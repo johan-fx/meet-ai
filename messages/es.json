@@ -126,7 +126,8 @@
       "confirm": "Confirmar",
       "select": "Seleccionar una opción",
       "selectNoSearchResults": "No se encontraron resultados",
-      "search": "Buscar..."
+      "search": "Buscar...",
+      "loading": "Cargando..."
     }
   },
   "meetings": {
@@ -147,7 +148,9 @@
         "title": "No se encontraron reuniones",
         "description": "Crea una reunión para iniciar una nueva llamada. Cada reunión tendrá un agente que seguirá tus instrucciones y podrá interactuar con los participantes durante la llamada.",
         "ctaLabel": "Crea tu primera reunión"
-      }
+      },
+      "editMeeting": "Editar reunión",
+      "editMeetingDescription": "Editar los detalles de la reunión"
     },
     "form": {
       "name": "Nombre",
@@ -160,7 +163,10 @@
       "errors": {
         "nameRequired": "Se requiere el nombre de la reunión",
         "agentRequired": "Se requiere un agente"
-      }
+      },
+      "delete": "Eliminar",
+      "edit": "Editar",
+      "update": "Actualizar"
     },
     "status": {
       "placeholder": "Seleccionar un estado",
@@ -169,6 +175,12 @@
       "completed": "Completado",
       "processing": "En proceso",
       "cancelled": "Cancelado"
+    },
+    "detail": {
+      "deleteDialog": {
+        "title": "¿Estás seguro?",
+        "description": "La siguiente acción eliminará la reunión. Esta acción no se puede deshacer."
+      }
     }
   }
 }
