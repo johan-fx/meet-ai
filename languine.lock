@@ -208,6 +208,19 @@ files:
     meetings.form.errors.agentRequired: 74a3192ab9e7cdea49009dba86684105
     meetings.detail.deleteDialog.title: 729a51874fe901b092899e9e8b31c97a
     meetings.detail.deleteDialog.description: d35db273431ee8a6a7ea8dcaecac166d
+    meetings.detail.upcoming.title: 9fea361b0985fadbd4f8e107d4df2f2d
+    meetings.detail.upcoming.description: 83b830a5d4a09208b541b281da2dbbd5
+    meetings.detail.upcoming.startMeeting: 894ed9be3e756a1b5f2a9fa4ad8ecc27
+    meetings.detail.upcoming.cancelMeeting: 06cb41dec68d3fa744a2ddc6a2cf8363
+    meetings.detail.active.title: ba576d4648a946f14d0aa7362fc3689b
+    meetings.detail.active.description: 6e871054f3df34f47ece709b1e7d1b6a
+    meetings.detail.active.joinMeeting: 68c52893fd1984843cc93c6b79d5ea7b
+    meetings.detail.cancelled.title: ecef9740d3855226ffb1a16b97577314
+    meetings.detail.cancelled.description: f8ef17fc70f207e11d8c5545bd57f2ce
+    meetings.detail.processing.title: 706ba90e771c83a037cce5a988027e6e
+    meetings.detail.processing.description: 837b74c691afe665890358350e93ec73
+    meetings.detail.completed.title: 706ba90e771c83a037cce5a988027e6e
+    meetings.detail.completed.description: 837b74c691afe665890358350e93ec73
     global.form.cancel: ea4788705e6873b424c65e91c2846b19
     global.form.accept: c4408d335012a56ff58937d78050efad
     global.form.confirm: 70d9be9b139893aa6c69b5e77e614311
