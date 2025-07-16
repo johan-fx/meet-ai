@@ -15,6 +15,7 @@ import {
 
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 const Form = FormProvider;
 
@@ -141,8 +142,30 @@ function FormMessage({
   ...props
 }: React.ComponentProps<"p">) {
   const { error, formMessageId } = useFormField();
+  const t = useTranslations();
+
+  // Function to automatically translate error messages
+  const translateError = (message: string | undefined) => {
+    if (!message) return undefined;
+    
+    // Check if message looks like a translation key (contains dots and no spaces)
+    if (message.includes('.') && !message.includes(' ')) {
+      try {
+        // Attempt to translate the key
+        return t(message);
+      } catch {
+        // Fall back to original message if translation fails
+        console.warn(`Translation key not found: ${message}`);
+        return message;
+      }
+    }
+    
+    // Return original message if it doesn't look like a translation key
+    return message;
+  };
+
   const body = error
-    ? error?.message
+    ? translateError(error?.message)
     : props.children;
 
   if (!body) {

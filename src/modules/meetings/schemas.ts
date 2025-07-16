@@ -11,7 +11,7 @@ export const meetingStatusEnum = z.enum([
 export const newMeetingSchema = z.object({
 	name: z.string().min(1, { message: "meetings.form.errors.nameRequired" }),
 	agentId: z.string().min(1, { message: "meetings.form.errors.agentRequired" }),
-	status: meetingStatusEnum.optional().default("upcoming"),
+	status: meetingStatusEnum,
 });
 
 export const updateMeetingSchema = newMeetingSchema

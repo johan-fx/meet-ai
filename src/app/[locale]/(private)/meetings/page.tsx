@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { loadMeetingsFilterParams } from "@/modules/meetings/server/params";
+import { MeetingsListHeader } from "@/modules/meetings/ui/components/meetings-list-header";
 import {
 	MeetingsView,
 	MeetingsViewError,
@@ -28,7 +29,7 @@ const Page = async ({ params, searchParams }: PageProps) => {
 
 	return (
 		<>
-			<div>Meetings Header here!</div>
+			<MeetingsListHeader />
 			<HydrationBoundary state={dehydrate(queryClient)}>
 				<Suspense fallback={<MeetingsViewLoading />}>
 					<ErrorBoundary fallback={<MeetingsViewError />}>
