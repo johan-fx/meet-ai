@@ -18,9 +18,10 @@ export type NewMeeting = z.infer<typeof newMeetingSchema>;
 export type UpdateMeeting = z.infer<typeof updateMeetingSchema>;
 export type UpdateMeetingStatus = z.infer<typeof updateMeetingStatusSchema>;
 
-export type MeetingStatus =
-	| "upcoming"
-	| "active"
-	| "completed"
-	| "processing"
-	| "cancelled";
+export enum MeetingStatus {
+	UPCOMING = "upcoming",
+	ACTIVE = "active",
+	COMPLETED = "completed",
+	PROCESSING = "processing",
+	CANCELLED = "cancelled",
+}

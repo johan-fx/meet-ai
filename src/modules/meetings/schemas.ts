@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { MeetingStatus } from "./types";
 
 export const meetingStatusEnum = z.enum([
 	"upcoming",
@@ -28,7 +29,7 @@ export const updateMeetingSchema = newMeetingSchema
 
 export const updateMeetingStatusSchema = z.object({
 	id: z.string().min(1, { message: "meetings.form.errors.idRequired" }),
-	status: meetingStatusEnum,
+	status: z.nativeEnum(MeetingStatus),
 	startedAt: z.date().optional().nullable(),
 	endedAt: z.date().optional().nullable(),
 });

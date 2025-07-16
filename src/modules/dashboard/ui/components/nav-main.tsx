@@ -11,6 +11,7 @@ import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
+	useSidebar,
 } from "@/components/ui/sidebar";
 import { useLocalizedHref } from "@/hooks/use-localized-href";
 
@@ -18,6 +19,8 @@ export function NavMain() {
 	const t = useTranslations("dashboard.navMain");
 	const { getLocalizedHref } = useLocalizedHref();
 	const pathname = usePathname();
+	// Get sidebar controls from the context
+	const { isMobile, setOpenMobile, setOpen } = useSidebar();
 
 	const navItems = [
 		{
@@ -32,6 +35,17 @@ export function NavMain() {
 		},
 	];
 
+	// Handler to collapse sidebar when navigation items are clicked
+	const handleNavItemClick = () => {
+		if (isMobile) {
+			// On mobile, close the sidebar completely
+			setOpenMobile(false);
+		} else {
+			// On desktop, collapse the sidebar to icon view
+			setOpen(false);
+		}
+	};
+
 	return (
 		<SidebarGroup>
 			<SidebarGroupLabel>{t("title")}</SidebarGroupLabel>
@@ -44,7 +58,7 @@ export function NavMain() {
 								isActive={pathname === item.href}
 								asChild
 							>
-								<Link href={item.href}>
+								<Link href={item.href} onClick={handleNavItemClick}>
 									<item.icon />
 									<span>{item.title}</span>
 								</Link>

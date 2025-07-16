@@ -134,6 +134,14 @@
         "ctaLabel": "Create your first meeting"
       }
     },
+    "status": {
+      "placeholder": "Select a status",
+      "upcoming": "Upcoming",
+      "active": "Active",
+      "completed": "Completed",
+      "processing": "Processing",
+      "cancelled": "Cancelled"
+    },
     "form": {
       "name": "Name",
       "namePlaceholder": "Eg. Math consultations",

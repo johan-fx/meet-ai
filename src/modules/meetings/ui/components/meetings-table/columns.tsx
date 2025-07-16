@@ -27,9 +27,9 @@ function formatDuration(seconds: number, language: string = defaultLocale) {
 	});
 }
 
-const statusIconMap = {
+export const statusIconMap = {
 	upcoming: ClockArrowUpIcon,
-	active: LoaderIcon,
+	active: VideoIcon,
 	completed: CircleCheckIcon,
 	processing: LoaderIcon,
 	cancelled: CircleXIcon,
@@ -53,7 +53,7 @@ export const useColumns = (): ColumnDef<MeetingGetMany[number]>[] => {
 			accessorKey: "name",
 			header: t("headers.name"),
 			meta: {
-				className: "w-full",
+				className: "md:w-full",
 			},
 			cell: ({ row }) => {
 				return (
@@ -87,7 +87,7 @@ export const useColumns = (): ColumnDef<MeetingGetMany[number]>[] => {
 			accessorKey: "status",
 			header: t("headers.status"),
 			meta: {
-				className: "w-36",
+				className: "md:w-36",
 			},
 			cell: ({ row }) => {
 				const Icon = statusIconMap[row.original.status];
@@ -115,7 +115,7 @@ export const useColumns = (): ColumnDef<MeetingGetMany[number]>[] => {
 			accessorKey: "duration",
 			header: t("headers.duration"),
 			meta: {
-				className: "w-36",
+				className: "md:w-36",
 			},
 			cell: ({ row }) => {
 				const duration = row.original.duration || 0;
