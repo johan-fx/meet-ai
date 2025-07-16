@@ -114,11 +114,35 @@
       }
     }
   },
+  "meetings": {
+    "list": {
+      "title": "My Meetings",
+      "newMeeting": "New Meeting",
+      "newMeetingDescription": "Create a new meeting",
+      "searchPlaceholder": "Search by name"
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Eg. Math consultations",
+      "agent": "Agent",
+      "agentPlaceholder": "Select an agent",
+      "create": "Create",
+      "agentDescription": "Not found the agent you want?",
+      "createNewAgent": "Create new agent",
+      "errors": {
+        "nameRequired": "Meeting name is required",
+        "agentRequired": "Agent is required"
+      }
+    }
+  },
   "global": {
     "form": {
       "cancel": "Cancel",
       "accept": "Accept",
-      "confirm": "Confirm"
+      "confirm": "Confirm",
+      "select": "Select an option",
+      "selectNoSearchResults": "No results found",
+      "search": "Search..."
     },
     "pagination": {
       "previous": "Previous",

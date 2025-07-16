@@ -114,6 +114,8 @@ export const meetingsRouter = createTRPCRouter({
 				})
 				.returning();
 
+			// TODO: Create Stream Call, Upsert Stream Users
+
 			return createdMeeting;
 		}),
 
