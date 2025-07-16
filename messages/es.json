@@ -180,6 +180,29 @@
       "deleteDialog": {
         "title": "¿Estás seguro?",
         "description": "La siguiente acción eliminará la reunión. Esta acción no se puede deshacer."
+      },
+      "upcoming": {
+        "title": "No ha comenzado aún",
+        "description": "Una vez que inicies esta reunión, un resumen aparecerá aquí.",
+        "startMeeting": "Iniciar reunión",
+        "cancelMeeting": "Cancelar reunión"
+      },
+      "active": {
+        "title": "Reunión en progreso",
+        "description": "La reunión está en progreso. Puedes unirte a la reunión para continuar.",
+        "joinMeeting": "Unirse a la reunión"
+      },
+      "cancelled": {
+        "title": "Reunión cancelada",
+        "description": "La reunión fue cancelada por el anfitrión."
+      },
+      "processing": {
+        "title": "Reunión completada",
+        "description": "La reunión ha sido completada y está siendo procesada. Puedes revisar el resumen y descargar la transcripción pronto."
+      },
+      "completed": {
+        "title": "Reunión completada",
+        "description": "La reunión ha sido completada y está siendo procesada. Puedes revisar el resumen y descargar la transcripción pronto."
       }
     }
   }
