@@ -203,6 +203,11 @@
       "completed": {
         "title": "Reunión completada",
         "description": "La reunión ha sido completada y está siendo procesada. Puedes revisar el resumen y descargar la transcripción pronto."
+      },
+      "cancelSuccess": "Reunión cancelada con éxito",
+      "cancelDialog": {
+        "title": "¿Estás seguro?",
+        "description": "La siguiente acción cancelará la reunión. Esta acción no se puede deshacer."
       }
     }
   }

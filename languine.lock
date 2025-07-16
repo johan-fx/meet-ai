@@ -206,8 +206,11 @@ files:
     meetings.form.createNewAgent: 9394dd1228926f808a8bf071df813037
     meetings.form.errors.nameRequired: 7f480b22d9f425a70fc1d1d3f2837dcf
     meetings.form.errors.agentRequired: 74a3192ab9e7cdea49009dba86684105
+    meetings.detail.cancelSuccess: 331e14524d8f73b9bcdaa9ef634ab8d8
     meetings.detail.deleteDialog.title: 729a51874fe901b092899e9e8b31c97a
     meetings.detail.deleteDialog.description: d35db273431ee8a6a7ea8dcaecac166d
+    meetings.detail.cancelDialog.title: 729a51874fe901b092899e9e8b31c97a
+    meetings.detail.cancelDialog.description: a347bb54530a61e3dcb0370205a42bbd
     meetings.detail.upcoming.title: 9fea361b0985fadbd4f8e107d4df2f2d
     meetings.detail.upcoming.description: 83b830a5d4a09208b541b281da2dbbd5
     meetings.detail.upcoming.startMeeting: 894ed9be3e756a1b5f2a9fa4ad8ecc27
