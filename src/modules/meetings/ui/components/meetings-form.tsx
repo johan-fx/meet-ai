@@ -25,7 +25,7 @@ import { useTRPC } from "@/trpc/client";
 import { newMeetingSchema } from "../../schemas";
 import type { MeetingGetOne } from "../../types";
 
-interface AgentsFormProps {
+interface MeetingsFormProps {
 	onSuccess?: (id?: string) => void;
 	onCancel?: () => void;
 	initialValues?: MeetingGetOne;
@@ -35,7 +35,7 @@ const MeetingsForm = ({
 	onSuccess,
 	onCancel,
 	initialValues,
-}: AgentsFormProps) => {
+}: MeetingsFormProps) => {
 	const t = useTranslations("meetings.form");
 	const tForm = useTranslations("global.form");
 	const trpc = useTRPC();
@@ -106,8 +106,6 @@ const MeetingsForm = ({
 			status: initialValues?.status ?? "upcoming",
 		},
 	});
-
-	console.log("form.formState.errors:", form.formState.errors);
 
 	const isEdit = !!initialValues?.id;
 	const isPending = createMeeting.isPending || updateMeeting.isPending;
