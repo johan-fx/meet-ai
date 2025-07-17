@@ -224,6 +224,15 @@ files:
     meetings.detail.processing.description: 837b74c691afe665890358350e93ec73
     meetings.detail.completed.title: 706ba90e771c83a037cce5a988027e6e
     meetings.detail.completed.description: 837b74c691afe665890358350e93ec73
+    call.completed.title: 8f7ca5c97fbd6ceba956909a56827717
+    call.completed.description: 1dcbcdc561fe870338627aa13b53ab67
+    call.lobby.title: f3494b696d1d95f8d54512d7a44e5e61
+    call.lobby.description: 92fe5ef20f27cd3c9deb926fdcf1fc59
+    call.lobby.join: 026b5e3d3e1e8c8e223ff34900057dc4
+    call.lobby.allowBrowserPermissions: a7624f32195905e2f66bee1258820a1e
+    call.ended.title: f3494b696d1d95f8d54512d7a44e5e61
+    call.ended.description: 1092f2b44f9e51b550db7b6c6ada1d64
+    call.ended.backToMeetings: a15503e37cdde593c3b4f52d90f54722
     global.form.cancel: ea4788705e6873b424c65e91c2846b19
     global.form.accept: c4408d335012a56ff58937d78050efad
     global.form.confirm: 70d9be9b139893aa6c69b5e77e614311

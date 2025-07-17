@@ -210,5 +210,22 @@
         "description": "La siguiente acción cancelará la reunión. Esta acción no se puede deshacer."
       }
     }
+  },
+  "call": {
+    "completed": {
+      "title": "La reunión ha terminado",
+      "description": "La reunión ha terminado. Ya no puedes unirte a la reunión."
+    },
+    "lobby": {
+      "title": "Reunión: {meetingName}",
+      "description": "Configura tu llamada antes de unirte",
+      "join": "Unirse a la llamada",
+      "allowBrowserPermissions": "Por favor, concede a tu navegador permiso para acceder a tu cámara y micrófono."
+    },
+    "ended": {
+      "title": "Reunión: {meetingName}",
+      "description": "La reunión ha terminado. El resumen estará disponible en unos minutos.",
+      "backToMeetings": "Volver a las reuniones"
+    }
   }
 }
