@@ -1,12 +1,11 @@
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import { setRequestLocale } from "next-intl/server";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import {
-	MeetingDetailView,
-	MeetingDetailViewError,
-	MeetingDetailViewLoading,
-} from "@/modules/meetings/ui/views/meeting-detail-view";
+	CallView,
+	CallViewError,
+	CallViewLoading,
+} from "@/modules/call/ui/views/call-view";
 import { getQueryClient, trpc } from "@/trpc/server";
 import type { PageProps } from "@/types/page";
 
@@ -25,13 +24,11 @@ const Page = async ({ params }: Props) => {
 		trpc.meetings.getOne.queryOptions({ id: meetingId }),
 	);
 
-	// TODO: Prefetch `meetings.getTranscript`
-
 	return (
 		<HydrationBoundary state={dehydrate(queryClient)}>
-			<Suspense fallback={<MeetingDetailViewLoading />}>
-				<ErrorBoundary fallback={<MeetingDetailViewError />}>
-					<MeetingDetailView meetingId={meetingId} />
+			<Suspense fallback={<CallViewLoading />}>
+				<ErrorBoundary fallback={<CallViewError />}>
+					<CallView meetingId={meetingId} />
 				</ErrorBoundary>
 			</Suspense>
 		</HydrationBoundary>

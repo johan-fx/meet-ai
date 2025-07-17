@@ -9,6 +9,9 @@ import {
 } from "@/constants";
 import { db } from "@/db";
 import { agents, meetings } from "@/db/schema";
+import { defaultLocale } from "@/i18n/routing";
+import { generateAvatarUri } from "@/lib/avatar";
+import { streamVideo } from "@/lib/stream-video";
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import {
 	newMeetingSchema,
@@ -108,7 +111,7 @@ export const meetingsRouter = createTRPCRouter({
 		.mutation(async ({ ctx, input }) => {
 			// Verify that the agent belongs to the user
 			const [existingAgent] = await db
-				.select({ id: agents.id })
+				.select()
 				.from(agents)
 				.where(
 					and(
@@ -132,7 +135,41 @@ export const meetingsRouter = createTRPCRouter({
 				})
 				.returning();
 
-			// TODO: Create Stream Call, Upsert Stream Users
+			// Create Stream Call
+			const call = streamVideo.video.call("default", createdMeeting.id);
+			await call.create({
+				data: {
+					created_by_id: ctx.auth.user.id,
+					custom: {
+						meetingId: createdMeeting.id,
+						meetingName: createdMeeting.name,
+					},
+					settings_override: {
+						transcription: {
+							language: (ctx.auth.user.locale ?? defaultLocale) as "en" | "es",
+							mode: "auto-on",
+							closed_caption_mode: "auto-on",
+						},
+						recording: {
+							mode: "auto-on",
+							quality: "1080p",
+						},
+					},
+				},
+			});
+
+			// Upsert Stream current Agent
+			await streamVideo.upsertUsers([
+				{
+					id: existingAgent.id,
+					name: existingAgent.name,
+					role: "user",
+					image: generateAvatarUri({
+						seed: existingAgent.name,
+						variant: "botttsNeutral",
+					}),
+				},
+			]);
 
 			return createdMeeting;
 		}),
@@ -238,73 +275,26 @@ export const meetingsRouter = createTRPCRouter({
 			return updatedMeeting;
 		}),
 
-	getByStatus: protectedProcedure
-		.input(
-			z.object({
-				status: z.nativeEnum(MeetingStatus),
-				limit: z.number().optional().default(10),
-			}),
-		)
-		.query(async ({ ctx, input }) => {
-			const { status, limit } = input;
-
-			const data = await db
-				.select({
-					...getTableColumns(meetings),
-				})
-				.from(meetings)
-				.where(
-					and(
-						eq(meetings.userId, ctx.auth.user.id),
-						eq(meetings.status, status),
-					),
-				)
-				.orderBy(desc(meetings.createdAt))
-				.limit(limit);
-
-			return data;
-		}),
-
-	getUpcoming: protectedProcedure
-		.input(z.object({ limit: z.number().optional().default(5) }))
-		.query(async ({ ctx, input }) => {
-			return db
-				.select({
-					...getTableColumns(meetings),
-				})
-				.from(meetings)
-				.where(
-					and(
-						eq(meetings.userId, ctx.auth.user.id),
-						eq(meetings.status, "upcoming"),
-					),
-				)
-				.orderBy(meetings.createdAt)
-				.limit(input.limit);
-		}),
-
-	getStats: protectedProcedure.query(async ({ ctx }) => {
-		const stats = await db
-			.select({
-				status: meetings.status,
-				count: count(),
-			})
-			.from(meetings)
-			.where(eq(meetings.userId, ctx.auth.user.id))
-			.groupBy(meetings.status);
-
-		return stats.reduce(
-			(acc, stat) => {
-				acc[stat.status] = stat.count;
-				return acc;
-			},
+	generateToken: protectedProcedure.mutation(async ({ ctx }) => {
+		await streamVideo.upsertUsers([
 			{
-				upcoming: 0,
-				active: 0,
-				completed: 0,
-				processing: 0,
-				cancelled: 0,
-			} as Record<string, number>,
-		);
+				id: ctx.auth.user.id,
+				name: ctx.auth.user.name,
+				role: "admin",
+				image:
+					ctx.auth.user.image ??
+					generateAvatarUri({ seed: ctx.auth.user.id, variant: "initials" }),
+			},
+		]);
+
+		const expirationTime = Math.floor(Date.now() / 1000) + 60 * 60; // 1 hour
+		const issuedAt = Math.floor(Date.now() / 1000) - 60;
+		const token = streamVideo.generateUserToken({
+			user_id: ctx.auth.user.id,
+			exp: expirationTime,
+			validity_in_seconds: issuedAt,
+		});
+
+		return token;
 	}),
 });
