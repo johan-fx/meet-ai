@@ -9,6 +9,7 @@ export const user = pgTable("user", {
 		.$defaultFn(() => false)
 		.notNull(),
 	image: text("image"),
+	locale: text("locale"), // Added locale field
 	createdAt: timestamp("created_at")
 		.$defaultFn(() => /* @__PURE__ */ new Date())
 		.notNull(),
