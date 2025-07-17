@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, OctagonAlertIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -32,6 +32,7 @@ export const SignUpView = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const { getLocalizedHref } = useLocalizedHref();
 	const router = useRouter();
+	const locale = useLocale();
 
 	// Create form schema with i18n values for validation messages
 	const formSchema = z
@@ -66,6 +67,7 @@ export const SignUpView = () => {
 			name: data.name,
 			email: data.email,
 			password: data.password,
+			locale,
 			callbackURL: getLocalizedHref("/"),
 		});
 

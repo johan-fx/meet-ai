@@ -15,6 +15,16 @@ export const auth = betterAuth({
 		enabled: true,
 		minPasswordLength: 8,
 	},
+	user: {
+		additionalFields: {
+			locale: {
+				type: "string",
+				required: false,
+				defaultValue: "en",
+				input: true, // Allow users to set this field during signup
+			},
+		},
+	},
 	socialProviders: {
 		github: {
 			clientId: requireEnv("GITHUB_CLIENT_ID"),

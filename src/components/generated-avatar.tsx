@@ -1,6 +1,5 @@
-import { botttsNeutral, initials } from "@dicebear/collection";
-import { createAvatar, type Result } from "@dicebear/core";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { generateAvatarUri } from "@/lib/avatar";
 import { cn } from "@/lib/utils";
 
 interface GeneratedAvatarProps {
@@ -22,33 +21,11 @@ const GeneratedAvatar = ({
 		);
 	}
 
-	let avatar: Result | undefined;
-
-	switch (variant) {
-		case "botttsNeutral":
-			avatar = createAvatar(botttsNeutral, {
-				seed,
-			});
-			break;
-		case "initials":
-			avatar = createAvatar(initials, {
-				seed,
-				fontWeight: 500,
-				fontSize: 42,
-			});
-			break;
-		default:
-			// Default to initials variant for unknown variants
-			avatar = createAvatar(initials, {
-				seed,
-				fontWeight: 500,
-				fontSize: 42,
-			});
-	}
+	const avatarUri = generateAvatarUri({ seed, variant });
 
 	return (
 		<Avatar className={cn(className)}>
-			<AvatarImage src={avatar?.toDataUri()} alt={seed} />
+			<AvatarImage src={avatarUri} alt={seed} />
 			<AvatarFallback>{seed.slice(0, 2).toUpperCase()}</AvatarFallback>
 		</Avatar>
 	);

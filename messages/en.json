@@ -195,6 +195,23 @@
       }
     }
   },
+  "call": {
+    "completed": {
+      "title": "Meeting has ended",
+      "description": "The meeting has ended. You can not longer join the meeting."
+    },
+    "lobby": {
+      "title": "Meeting: {meetingName}",
+      "description": "Set up your call before joining",
+      "join": "Join Call",
+      "allowBrowserPermissions": "Please grant your browser a permission to access your camera and microphone."
+    },
+    "ended": {
+      "title": "Meeting: {meetingName}",
+      "description": "The meeting has ended. Summary will be available in few minutes.",
+      "backToMeetings": "Back to meetings"
+    }
+  },
   "global": {
     "form": {
       "cancel": "Cancel",
