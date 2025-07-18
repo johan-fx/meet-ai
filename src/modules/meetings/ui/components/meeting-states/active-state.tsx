@@ -16,7 +16,7 @@ export const ActiveState = ({ meetingId }: Props) => {
 			<EmptyState
 				title={t("active.title")}
 				description={t("active.description")}
-				image="/images/active.svg"
+				image="/images/upcoming.svg"
 			/>
 			<div className="flex flex-col-reverse lg:flex-row lg:justify-center items-center gap-2 w-full">
 				<Button className="w-full lg:w-auto" asChild>

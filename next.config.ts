@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
   devIndicators: {
     position: "bottom-right",
   },
+  allowedDevOrigins:
+    process.env.NODE_ENV !== "production"
+      ? [process.env.NGROK_PUBLIC_DOMAIN ?? ""]
+      : [],
 };
 
 export default withNextIntl(nextConfig);

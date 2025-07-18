@@ -62,23 +62,28 @@ export const useColumns = (): ColumnDef<MeetingGetMany[number]>[] => {
 							{row.original.name}
 						</span>
 						<div className=" flex items-center gap-x-2">
-							<div className=" flex items-center gap-x-1">
+							<div className=" flex items-center gap-x-2">
 								<CornerDownRightIcon className="size-3 text-muted-foreground" />
+
+								<span className="text-sm text-muted-foreground max-w-[200px] truncate capitalize">
+									{row.original.agent.name}
+								</span>
 								<GeneratedAvatar
 									seed={row.original.agent.name}
 									variant="botttsNeutral"
 									className="size-4"
 								/>
-								<span className="text-sm text-muted-foreground max-w-[200px] truncate capitalize">
-									{row.original.agent.name}
+								<span className="text-sm text-muted-foreground">
+									{row.original.startedAt
+										? format.dateTime(new Date(row.original.startedAt), {
+												day: "numeric",
+												month: "short",
+												year: "numeric",
+											})
+										: ""}
 								</span>
 							</div>
 						</div>
-						<span className="text-sm text-muted-foreground">
-							{row.original.startedAt
-								? format.dateTime(new Date(row.original.startedAt), "short")
-								: ""}
-						</span>
 					</div>
 				);
 			},
@@ -115,7 +120,7 @@ export const useColumns = (): ColumnDef<MeetingGetMany[number]>[] => {
 			accessorKey: "duration",
 			header: t("headers.duration"),
 			meta: {
-				className: "md:w-36",
+				className: "md:w-40",
 			},
 			cell: ({ row }) => {
 				const duration = row.original.duration || 0;
