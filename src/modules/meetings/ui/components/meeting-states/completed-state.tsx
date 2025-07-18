@@ -83,6 +83,8 @@ export const CompletedState = ({ meeting }: Props) => {
 								<Link
 									href={`/agents/${meeting.agent.id}`}
 									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={`View agent ${meeting.agent.name} details`}
 									className="flex items-center gap-x-2 underline underline-offset-4 capitalize"
 								>
 									<GeneratedAvatar
