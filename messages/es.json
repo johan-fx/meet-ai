@@ -202,7 +202,14 @@
       },
       "completed": {
         "title": "Reunión completada",
-        "description": "La reunión ha sido completada y está siendo procesada. Puedes revisar el resumen y descargar la transcripción pronto."
+        "description": "La reunión ha sido completada y está siendo procesada. Puedes revisar el resumen y descargar la transcripción pronto.",
+        "generalSummary": "Resumen General",
+        "tabs": {
+          "summary": "Resumen",
+          "transcript": "Transcripción",
+          "recording": "Grabación",
+          "chat": "Preguntar a IA"
+        }
       },
       "cancelSuccess": "Reunión cancelada con éxito",
       "cancelDialog": {

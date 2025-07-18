@@ -224,6 +224,11 @@ files:
     meetings.detail.processing.description: 837b74c691afe665890358350e93ec73
     meetings.detail.completed.title: 706ba90e771c83a037cce5a988027e6e
     meetings.detail.completed.description: 837b74c691afe665890358350e93ec73
+    meetings.detail.completed.generalSummary: fc36bbf057e7153415601bec93551ee1
+    meetings.detail.completed.tabs.summary: 290612199861c31d1036b185b4e69b75
+    meetings.detail.completed.tabs.transcript: f24f9b19509f19811927c2c5108eb69f
+    meetings.detail.completed.tabs.recording: c5564d2e8b8e0ae08bf4363f2b947166
+    meetings.detail.completed.tabs.chat: 3ed848285707d00cb9463012a50cb711
     call.completed.title: 8f7ca5c97fbd6ceba956909a56827717
     call.completed.description: 1dcbcdc561fe870338627aa13b53ab67
     call.lobby.title: f3494b696d1d95f8d54512d7a44e5e61
