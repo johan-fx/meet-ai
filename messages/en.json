@@ -191,7 +191,14 @@
       },
       "completed": {
         "title": "Meeting completed",
-        "description": "The meeting has been completed and is being processed. You can review the summary and download the transcript soon."
+        "description": "The meeting has been completed and is being processed. You can review the summary and download the transcript soon.",
+        "generalSummary": "General Summary",
+        "tabs": {
+          "summary": "Summary",
+          "transcript": "Transcript",
+          "recording": "Recording",
+          "chat": "Ask AI"
+        }
       }
     }
   },

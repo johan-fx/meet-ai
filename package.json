@@ -86,6 +86,7 @@
     "react-dom": "^19.0.0",
     "react-error-boundary": "^6.0.0",
     "react-hook-form": "^7.56.4",
+    "react-markdown": "^10.1.0",
     "react-resizable-panels": "^3.0.2",
     "recharts": "^2.15.3",
     "require-in-the-middle": "^7.5.2",
