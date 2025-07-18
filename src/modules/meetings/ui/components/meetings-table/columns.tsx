@@ -1,7 +1,6 @@
 "use client";
 
 import type { ColumnDef } from "@tanstack/react-table";
-import humanizeDuration from "humanize-duration";
 import {
 	CircleCheckIcon,
 	CircleXIcon,
@@ -14,18 +13,8 @@ import {
 import { useFormatter, useLocale, useTranslations } from "next-intl";
 import { GeneratedAvatar } from "@/components/generated-avatar";
 import { Badge } from "@/components/ui/badge";
-import { defaultLocale } from "@/i18n/routing";
-import { cn } from "@/lib/utils";
+import { cn, formatDuration } from "@/lib/utils";
 import type { MeetingGetMany } from "../../../types";
-
-function formatDuration(seconds: number, language: string = defaultLocale) {
-	return humanizeDuration(seconds * 1000, {
-		language,
-		units: ["h", "m", "s"],
-		round: true,
-		largest: 1,
-	});
-}
 
 export const statusIconMap = {
 	upcoming: ClockArrowUpIcon,
@@ -76,9 +65,7 @@ export const useColumns = (): ColumnDef<MeetingGetMany[number]>[] => {
 								<span className="text-sm text-muted-foreground">
 									{row.original.startedAt
 										? format.dateTime(new Date(row.original.startedAt), {
-												day: "numeric",
-												month: "short",
-												year: "numeric",
+												dateStyle: "medium",
 											})
 										: ""}
 								</span>

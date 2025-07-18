@@ -17,6 +17,7 @@ import { EditMeetingDialog } from "../components/edit-meeting-dialog";
 import { MeetingDetailHeader } from "../components/meeting-detail-header";
 import { ActiveState } from "../components/meeting-states/active-state";
 import { CancelledState } from "../components/meeting-states/cancelled-state";
+import { CompletedState } from "../components/meeting-states/completed-state";
 import { ProcessingState } from "../components/meeting-states/processing-state";
 import { UpcomingState } from "../components/meeting-states/upcoming-state";
 
@@ -136,7 +137,7 @@ export const MeetingDetailView = ({ meetingId }: Props) => {
 							/>
 						)}
 						{isCancelled && <CancelledState />}
-						{isCompleted && <div>TODO: Completed state</div>}
+						{isCompleted && <CompletedState meeting={data} />}
 						{isProcessing && <ProcessingState />}
 					</div>
 				</div>
