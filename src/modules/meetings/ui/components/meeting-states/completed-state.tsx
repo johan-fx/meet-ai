@@ -117,6 +117,8 @@ export const CompletedState = ({ meeting }: Props) => {
 							</Badge>
 							<div>
 								<Markdown
+									skipHtml={true}
+									disallowedElements={['script', 'iframe', 'object', 'embed']}
 									components={{
 										h1: (props) => (
 											<h1 className="text-2xl font-semibold mb-6" {...props} />
