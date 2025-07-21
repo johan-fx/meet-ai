@@ -14,6 +14,9 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatDuration } from "@/lib/utils";
 import type { MeetingGetOne } from "@/modules/meetings/types";
+import { ChatProvider } from "../chat-provider";
+import { ChatUI } from "../chat-ui";
+import { Transcript } from "../transcript";
 
 const tabTriggerClasses =
 	"h-full text-muted-foreground rounded-none bg-background border-b-2 border-transparent data-[state=active]:shadow-none data-[state=active]:text-accent-foreground data-[state=active]:border-b-primary hover:text-accent-foreground";
@@ -118,7 +121,7 @@ export const CompletedState = ({ meeting }: Props) => {
 							<div>
 								<Markdown
 									skipHtml={true}
-									disallowedElements={['script', 'iframe', 'object', 'embed']}
+									disallowedElements={["script", "iframe", "object", "embed"]}
 									components={{
 										h1: (props) => (
 											<h1 className="text-2xl font-semibold mb-6" {...props} />
@@ -172,8 +175,8 @@ export const CompletedState = ({ meeting }: Props) => {
 					</div>
 				</TabsContent>
 				<TabsContent value={MeetingTabs.TRANSCRIPT}>
-					<div className="bg-white rounded-lg border px-3">
-						<p>{meeting.transcriptUrl}</p>
+					<div className="bg-white rounded-lg border px-4 py-5">
+						<Transcript meetingId={meeting.id} />
 					</div>
 				</TabsContent>
 				<TabsContent value={MeetingTabs.RECORDING}>
@@ -187,7 +190,11 @@ export const CompletedState = ({ meeting }: Props) => {
 						</video>
 					</div>
 				</TabsContent>
-				<TabsContent value={MeetingTabs.CHAT}></TabsContent>
+				<TabsContent value={MeetingTabs.CHAT}>
+					<div className="bg-white rounded-lg border overflow-hidden">
+						<ChatProvider meetingId={meeting.id} />
+					</div>
+				</TabsContent>
 			</Tabs>
 		</div>
 	);

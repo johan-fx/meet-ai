@@ -25,7 +25,9 @@ const ProtectedLayout = async ({ children, params }: Props) => {
 	}
 
 	return (
-		<main className="flex flex-col h-screen w-screen bg-muted">{children}</main>
+		<main className="flex flex-col min-h-screen w-screen bg-muted">
+			{children}
+		</main>
 	);
 };
 

@@ -21,7 +21,7 @@ export const CallView = ({ meetingId }: Props) => {
 
 	if (data.status === MeetingStatus.COMPLETED) {
 		return (
-			<div className="flex h-screen items-center justify-center">
+			<div className="flex min-h-screen items-center justify-center">
 				<div className="bg-white p-8 m-8 rounded-lg max-w-md">
 					<EmptyState
 						title={t("completed.title")}

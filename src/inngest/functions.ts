@@ -4,12 +4,12 @@ import JSONL from "jsonl-parse-stringify";
 import { db } from "@/db";
 import { agents, meetings, user } from "@/db/schema";
 import { requireEnv } from "@/lib/env";
+import { transcriptToSummaryPrompt } from "@/lib/prompts";
 import {
 	MeetingStatus,
 	type StreamTranscriptItem,
 } from "@/modules/meetings/types";
 import { inngest } from "./client";
-import { transcriptToSummaryPrompt } from "./prompts";
 
 const openAiApiKey = requireEnv("OPENAI_API_KEY");
 
