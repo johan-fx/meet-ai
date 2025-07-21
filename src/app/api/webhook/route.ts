@@ -4,15 +4,26 @@ import type {
 	CallSessionParticipantLeftEvent,
 	CallSessionStartedEvent,
 	CallTranscriptionReadyEvent,
+	MessageNewEvent,
 } from "@stream-io/node-sdk";
 import { and, eq } from "drizzle-orm";
 import { type NextRequest, NextResponse } from "next/server";
+import OpenAI from "openai";
+import type { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 import { db } from "@/db";
 import { agents, meetings } from "@/db/schema";
 import { inngest } from "@/inngest/client";
+import { generateAvatarUri } from "@/lib/avatar";
 import { requireEnv } from "@/lib/env";
+import { chatMessagePrompt } from "@/lib/prompts";
+import { streamChat } from "@/lib/stream-chat";
 import { streamVideo } from "@/lib/stream-video";
+import { CHAT_CHANNEL_TYPE } from "@/modules/meetings/constants";
 import { MeetingStatus } from "@/modules/meetings/types";
+
+const openAiClient = new OpenAI({
+	apiKey: requireEnv("OPENAI_API_KEY"),
+});
 
 /**
  * Verifies the webhook signature using Stream's SDK
@@ -174,6 +185,10 @@ async function handleCallTranscriptionReady(
 	return NextResponse.json({ status: "ok" });
 }
 
+/**
+ * Handles call recording ready events
+ * - Updates meeting with recording URL
+ */
 async function handleCallRecordingReady(event: CallRecordingReadyEvent) {
 	const meetingId = event.call_cid?.split(":")[1]; // call_cid is in the format of "type:id"
 
@@ -189,7 +204,94 @@ async function handleCallRecordingReady(event: CallRecordingReadyEvent) {
 		return NextResponse.json({ error: "Meeting not found" }, { status: 404 });
 	}
 
-	// TODO: Call Inngest background job to summarize the recording
+	return NextResponse.json({ status: "ok" });
+}
+
+async function handleChatMessageNew(event: MessageNewEvent) {
+	const userId = event.user?.id;
+	const meetingId = event.channel_id;
+	const text = event.message?.text;
+
+	if (!userId || !meetingId || !text) {
+		return NextResponse.json({ error: "Invalid message" }, { status: 400 });
+	}
+
+	const [existingMeeting] = await db
+		.select()
+		.from(meetings)
+		.where(
+			and(
+				eq(meetings.id, meetingId),
+				eq(meetings.status, MeetingStatus.COMPLETED),
+			),
+		);
+
+	if (!existingMeeting) {
+		return NextResponse.json({ error: "Meeting not found" }, { status: 404 });
+	}
+
+	const [existingAgent] = await db
+		.select()
+		.from(agents)
+		.where(eq(agents.id, existingMeeting.agentId));
+
+	if (!existingAgent) {
+		return NextResponse.json({ error: "Agent not found" }, { status: 404 });
+	}
+
+	// Check if the message is from the AI Assistant
+	if (userId !== existingAgent.id) {
+		const instructions = chatMessagePrompt(
+			existingMeeting.summary ?? "",
+			existingAgent.instructions,
+		);
+
+		const channel = streamChat.channel(CHAT_CHANNEL_TYPE, meetingId);
+		await channel.watch();
+
+		const previousMessages = channel.state.messages
+			.slice(-5)
+			.filter((msg) => msg.text?.trim() !== "")
+			.map<ChatCompletionMessageParam>((msg) => ({
+				role: msg.user?.id === existingAgent.id ? "assistant" : "user",
+				content: msg.text ?? "",
+			}));
+
+		const response = await openAiClient.chat.completions.create({
+			model: "gpt-4o",
+			messages: [
+				{ role: "system", content: instructions },
+				...previousMessages,
+				{ role: "user", content: text },
+			],
+		});
+
+		const message = response.choices[0].message.content;
+
+		if (!message) {
+			return NextResponse.json(
+				{ error: "No response from AI" },
+				{ status: 500 },
+			);
+		}
+
+		const agentAvatar = generateAvatarUri({
+			seed: existingAgent.name,
+			variant: "botttsNeutral",
+		});
+
+		const chatUser = {
+			id: existingAgent.id,
+			name: existingAgent.name,
+			image: agentAvatar,
+		};
+
+    await streamChat.upsertUser(chatUser);
+		await channel.sendMessage({
+			text: message,
+			user: chatUser,
+		});
+	}
 
 	return NextResponse.json({ status: "ok" });
 }
@@ -248,6 +350,9 @@ export async function POST(req: NextRequest) {
 
 		case "call.recording_ready":
 			return await handleCallRecordingReady(payload as CallRecordingReadyEvent);
+
+		case "message.new":
+			return await handleChatMessageNew(payload as MessageNewEvent);
 
 		default:
 			// For unknown event types, just return ok without processing
