@@ -286,8 +286,7 @@ async function handleChatMessageNew(event: MessageNewEvent) {
 			image: agentAvatar,
 		};
 
-		streamChat.upsertUser(chatUser);
-
+    await streamChat.upsertUser(chatUser);
 		await channel.sendMessage({
 			text: message,
 			user: chatUser,
