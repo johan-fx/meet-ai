@@ -143,6 +143,7 @@ files:
     dashboard.navUser.billing: 780c462e85ba4399a5d42e88f69a15ca
     dashboard.navUser.notifications: a274f4d4670213a9045ce258c6c56b80
     dashboard.navUser.logOut: 4394c8d8e63c470de62ced3ae85de5ae
+    dashboard.navUser.managePlan: f914bc28891f4eb7b07b8da461886a34
     dashboard.navMain.title: 419f3742e6de8e0ec4b22cce005e7630
     dashboard.navMain.meetings: 2fd5c01f4902b65ff3d8dd3d60565520
     dashboard.navMain.agents: 375099f0c804e924c1dc275370710d92
@@ -248,3 +249,10 @@ files:
     global.pagination.previous: dd1f775e443ff3b9a89270713580a51b
     global.pagination.next: 10ac3d04253ef7e1ddc73e6091c0cd55
     global.pagination.pageOf: c55db04c8c3722f2e1d9b2d618134a6c
+    global.errors.freeAgentLimitReached: 0f350f366e30095baeb7a06dd3b3b02c
+    global.errors.freeMeetingLimitReached: 543ae8ee04451913c0bec0c77e071a31
+    premium.pricing.features: 98f770b0af18ca763421bac22b4b6805
+    premium.pricing.upgrade: f683581d3e75f05f9d9215f9b4696cef
+    premium.pricing.manage: 34e34c43ec6b943c10a3cc1a1a16fb11
+    premium.pricing.changePlan: cc5a73c8818517ac30a8efd7fcde380e
+    premium.pricing.bestValue: f5cf4d3f803ed1daf07fc75f42285f60

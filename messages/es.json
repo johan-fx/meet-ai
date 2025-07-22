@@ -63,7 +63,8 @@
       "account": "Cuenta",
       "billing": "Facturación",
       "notifications": "Notificaciones",
-      "logOut": "Cerrar sesión"
+      "logOut": "Cerrar sesión",
+      "managePlan": "Gestionar Plan"
     },
     "navMain": {
       "title": "Plataforma",
@@ -128,6 +129,10 @@
       "selectNoSearchResults": "No se encontraron resultados",
       "search": "Buscar...",
       "loading": "Cargando..."
+    },
+    "errors": {
+      "freeAgentLimitReached": "Ha alcanzado el límite gratuito para agentes. Por favor, actualice su plan para continuar.",
+      "freeMeetingLimitReached": "Ha alcanzado el límite gratuito para reuniones. Por favor, actualice su plan para continuar."
     }
   },
   "meetings": {
@@ -233,6 +238,15 @@
       "title": "Reunión: {meetingName}",
       "description": "La reunión ha terminado. El resumen estará disponible en unos minutos.",
       "backToMeetings": "Volver a las reuniones"
+    }
+  },
+  "premium": {
+    "pricing": {
+      "features": "Características",
+      "upgrade": "Actualizar",
+      "manage": "Gestionar",
+      "changePlan": "Cambiar Plan",
+      "bestValue": "Mejor Valor"
     }
   }
 }
