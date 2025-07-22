@@ -40,9 +40,6 @@ export function NavMain() {
 		if (isMobile) {
 			// On mobile, close the sidebar completely
 			setOpenMobile(false);
-		} else {
-			// On desktop, collapse the sidebar to icon view
-			setOpen(false);
 		}
 	};
 

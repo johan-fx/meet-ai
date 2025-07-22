@@ -10,6 +10,7 @@ import {
 	useSidebar,
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
+import { DashboardTrial } from "./dashboard-trial";
 import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
 
@@ -43,6 +44,7 @@ export function DashboardSidebar(props: React.ComponentProps<typeof Sidebar>) {
 				<NavMain />
 			</SidebarContent>
 			<SidebarFooter>
+				<DashboardTrial />
 				<NavUser />
 			</SidebarFooter>
 			<SidebarRail />

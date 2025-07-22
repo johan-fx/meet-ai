@@ -113,21 +113,21 @@ export function NavUser() {
 							</DrawerHeader>
 							<div className="flex flex-col gap-2">
 								<Separator />
-								<Button variant="ghost" className="justify-start">
+								<Button
+									variant="ghost"
+									className="justify-start"
+									onClick={() => router.push("/upgrade")}
+								>
 									<Sparkles />
-									{t("upgradeToPro")}
+									{t("managePlan")}
 								</Button>
-								<Button variant="ghost" className="justify-start">
-									<BadgeCheck />
-									{t("account")}
-								</Button>
-								<Button variant="ghost" className="justify-start">
+								<Button
+									variant="ghost"
+									className="justify-start"
+									onClick={() => authClient.customer.portal()}
+								>
 									<CreditCard />
 									{t("billing")}
-								</Button>
-								<Button variant="ghost" className="justify-start">
-									<Bell />
-									{t("notifications")}
 								</Button>
 							</div>
 							<DrawerFooter>
@@ -159,24 +159,13 @@ export function NavUser() {
 							</DropdownMenuLabel>
 							<DropdownMenuSeparator />
 							<DropdownMenuGroup>
-								<DropdownMenuItem>
+								<DropdownMenuItem onClick={() => router.push("/upgrade")}>
 									<Sparkles />
-									{t("upgradeToPro")}
+									{t("managePlan")}
 								</DropdownMenuItem>
-							</DropdownMenuGroup>
-							<DropdownMenuSeparator />
-							<DropdownMenuGroup>
-								<DropdownMenuItem>
-									<BadgeCheck />
-									{t("account")}
-								</DropdownMenuItem>
-								<DropdownMenuItem>
+								<DropdownMenuItem onClick={() => authClient.customer.portal()}>
 									<CreditCard />
 									{t("billing")}
-								</DropdownMenuItem>
-								<DropdownMenuItem>
-									<Bell />
-									{t("notifications")}
 								</DropdownMenuItem>
 							</DropdownMenuGroup>
 							<DropdownMenuSeparator />
