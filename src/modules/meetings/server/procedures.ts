@@ -23,7 +23,11 @@ import { defaultLocale } from "@/i18n/routing";
 import { generateAvatarUri } from "@/lib/avatar";
 import { streamChat } from "@/lib/stream-chat";
 import { streamVideo } from "@/lib/stream-video";
-import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
+import {
+	createTRPCRouter,
+	premiumProcedure,
+	protectedProcedure,
+} from "@/trpc/init";
 import {
 	newMeetingSchema,
 	updateMeetingSchema,
@@ -117,7 +121,7 @@ export const meetingsRouter = createTRPCRouter({
 			return { items: data, total: total.count, totalPages };
 		}),
 
-	create: protectedProcedure
+	create: premiumProcedure("meetings")
 		.input(newMeetingSchema)
 		.mutation(async ({ ctx, input }) => {
 			// Verify that the agent belongs to the user

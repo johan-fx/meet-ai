@@ -63,7 +63,8 @@
       "account": "Account",
       "billing": "Billing",
       "notifications": "Notifications",
-      "logOut": "Log out"
+      "logOut": "Log out",
+      "managePlan": "Manage Plan"
     },
     "navMain": {
       "title": "Platform",
@@ -233,6 +234,19 @@
       "previous": "Previous",
       "next": "Next",
       "pageOf": "Page {page} of {totalPages}"
+    },
+    "errors": {
+      "freeAgentLimitReached": "You have reached the free limit for agents. Please upgrade your plan to continue.",
+      "freeMeetingLimitReached": "You have reached the free limit for meetings. Please upgrade your plan to continue."
+    }
+  },
+  "premium": {
+    "pricing": {
+      "features": "Features",
+      "upgrade": "Upgrade",
+      "manage": "Manage",
+      "changePlan": "Change Plan",
+      "bestValue": "Best Value"
     }
   }
 }

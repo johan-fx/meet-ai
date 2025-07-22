@@ -34,6 +34,7 @@ const AgentsForm = ({
 	initialValues,
 }: AgentsFormProps) => {
 	const t = useTranslations("agents.form");
+	const tGlobal = useTranslations("global");
 	const trpc = useTRPC();
 	const router = useRouter();
 	const queryClient = useQueryClient();
@@ -45,12 +46,21 @@ const AgentsForm = ({
 					trpc.agents.getMany.queryOptions({}),
 				);
 
-				// TODO: Invalidate free tier usage
+				await queryClient.invalidateQueries(
+					trpc.premium.getFreeUsage.queryOptions(),
+				);
 
 				onSuccess?.();
 			},
 			onError: (error) => {
-				toast.error(error.message);
+				const { message } = error;
+				if (message.includes(".") && !message.includes(" ")) {
+					toast.error(tGlobal(message));
+				} else {
+					toast.error(error.message);
+				}
+
+				onCancel?.();
 
 				if (error.data?.code === "FORBIDDEN") {
 					router.push("/upgrade");
@@ -76,10 +86,6 @@ const AgentsForm = ({
 			},
 			onError: (error) => {
 				toast.error(error.message);
-
-				if (error.data?.code === "FORBIDDEN") {
-					router.push("/upgrade");
-				}
 			},
 		}),
 	);

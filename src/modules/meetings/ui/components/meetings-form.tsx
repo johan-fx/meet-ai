@@ -37,7 +37,7 @@ const MeetingsForm = ({
 	initialValues,
 }: MeetingsFormProps) => {
 	const t = useTranslations("meetings.form");
-	const tForm = useTranslations("global.form");
+	const tGlobal = useTranslations("global");
 	const trpc = useTRPC();
 	const router = useRouter();
 	const queryClient = useQueryClient();
@@ -59,12 +59,21 @@ const MeetingsForm = ({
 					trpc.meetings.getMany.queryOptions({}),
 				);
 
-				// TODO: Invalidate free tier usage
+				await queryClient.invalidateQueries(
+					trpc.premium.getFreeUsage.queryOptions(),
+				);
 
 				onSuccess?.(data.id);
 			},
 			onError: (error) => {
-				toast.error(error.message);
+				const { message } = error;
+				if (message.includes(".") && !message.includes(" ")) {
+					toast.error(tGlobal(message));
+				} else {
+					toast.error(error.message);
+				}
+
+				onCancel?.();
 
 				if (error.data?.code === "FORBIDDEN") {
 					router.push("/upgrade");
@@ -90,10 +99,6 @@ const MeetingsForm = ({
 			},
 			onError: (error) => {
 				toast.error(error.message);
-
-				if (error.data?.code === "FORBIDDEN") {
-					router.push("/upgrade");
-				}
 			},
 		}),
 	);
@@ -196,7 +201,7 @@ const MeetingsForm = ({
 								disabled={isPending}
 								className="flex-1 md:flex-none"
 							>
-								{tForm("cancel")}
+								{tGlobal("form.cancel")}
 							</Button>
 						)}
 						<Button
